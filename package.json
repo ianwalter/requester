@@ -1,14 +1,35 @@
 {
   "name": "@ianwalter/requester",
+  "description": "A convenience wrapper around the Node.js http.request API",
+  "version": "0.0.0",
   "license": "SEE LICENSE IN LICENSE",
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
     "test": "bff"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ianwalter/requester.git"
+  },
+  "keywords": [
+    "request",
+    "http",
+    "node",
+    "get",
+    "post",
+    "put",
+    "delete"
+  ],
+  "author": "Ian Walter <public@iankwalter.com> (https://iankwalter.com)",
+  "bugs": {
+    "url": "https://github.com/ianwalter/requester/issues"
+  },
+  "homepage": "https://github.com/ianwalter/requester#readme",
   "devDependencies": {
     "@ianwalter/bff": "^6.4.0",
     "@ianwalter/eslint-config": "^2.2.0",
+    "@ianwalter/release": "^1.1.10",
     "@ianwalter/renovate-config": "^1.1.1",
     "@ianwalter/test-server": "^1.4.3"
   },
