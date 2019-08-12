@@ -42,3 +42,16 @@ test('POST request with JSON', async ({ expect }) => {
   expect(response.body).toEqual(body)
   await server.close()
 })
+
+test('Invalid response with JSON body', async ({ expect }) => {
+  const server = await createTestServer()
+  const body = { message: 'Missing fields' }
+  server.use(ctx => {
+    ctx.status = 400
+    ctx.body = body
+  })
+  const response = await requester.post(server.url)
+  expect(response.statusCode).toBe(400)
+  expect(response.body).toEqual(body)
+  await server.close()
+})

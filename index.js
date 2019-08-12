@@ -14,13 +14,13 @@ class Requester {
 
     // Add convenience methods to the requester instance.
     methods.forEach(method => {
-      this[method] = async (url, options) => this.request(method, url, options)
+      this[method] = async (url, opts) => this.request(url, { method, ...opts })
     })
   }
 
-  request (method, url, options) {
+  request (url, options) {
     // Combine the base options and argument options into a single object.
-    options = Object.assign({ method }, this.options, options)
+    options = Object.assign(this.options, options)
 
     // If a base URL has been configured, use it to build the complete URL.
     if (options.baseUrl) {
