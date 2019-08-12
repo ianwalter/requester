@@ -32,6 +32,7 @@ class Requester {
     if (options.body && typeof options.body === 'object') {
       options.headers['content-type'] = 'application/json'
       options.body = JSON.stringify(options.body)
+      options.headers['content-length'] = `${Buffer.byteLength(options.body)}`
     }
 
     return new Promise((resolve, reject) => {
@@ -40,6 +41,7 @@ class Requester {
         // Listen to the data event in order to receive the response body.
         response.on('data', data => {
           // Convert the response body from a Buffer to a String.
+          response.rawBody = data
           response.body = data.toString()
 
           // Automatically parse the response body as JSON if the Content-Type
