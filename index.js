@@ -20,7 +20,7 @@ class Requester {
 
   request (url, options) {
     // Combine the base options and argument options into a single object.
-    options = Object.assign(this.options, options)
+    options = Object.assign({}, this.options, options)
 
     // If a base URL has been configured, use it to build the complete URL.
     if (options.baseUrl) {
