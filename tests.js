@@ -50,7 +50,7 @@ test('Invalid response with JSON body', async ({ expect }) => {
     ctx.status = 400
     ctx.body = body
   })
-  const response = await requester.post(server.url)
+  const response = await requester.get(server.url)
   console.log('ENTER')
   expect(response.statusCode).toBe(400)
   expect(response.body).toEqual(body)
