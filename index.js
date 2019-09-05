@@ -53,7 +53,12 @@ class Requester {
 
         // When the response is complete, resolve the returned Promise with the
         // response.
-        response.on('end', () => resolve(response))
+        response.on('end', () => {
+          // Add the .ok convenience property.
+          response.ok = response.statusCode < 400 && response.statusCode > 199
+
+          resolve(response)
+        })
       })
 
       // If an error event was received, reject the returned Promise.
