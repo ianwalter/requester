@@ -74,17 +74,3 @@ test('Bad Request with shouldThrow = false', async ({ expect }) => {
   expect(response.body).toEqual(body)
   await server.close()
 })
-
-test.skip('Invalid response with JSON body', async ({ expect }) => {
-  const server = await createTestServer()
-  const body = { message: 'Missing fields' }
-  server.use(ctx => {
-    ctx.status = 400
-    ctx.body = body
-  })
-  const response = await requester.get(server.url)
-  expect(response.ok).toBe(false)
-  expect(response.statusCode).toBe(400)
-  expect(response.body).toEqual(body)
-  await server.close()
-})
