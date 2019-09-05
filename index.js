@@ -1,5 +1,9 @@
 const http = require('http')
+const { version } = require('./package.json')
 
+const headers = {
+  'user-agent': `@ianwalter/requester/${version}`
+}
 const methods = [
   'get',
   'post',
@@ -10,7 +14,7 @@ const methods = [
 class Requester {
   constructor (options) {
     // Set the base options for the requester instance.
-    this.options = Object.assign({ headers: {} }, options)
+    this.options = Object.assign({ headers }, options)
 
     // Add convenience methods to the requester instance.
     methods.forEach(method => {
