@@ -1,6 +1,6 @@
 const { test } = require('@ianwalter/bff')
 const createTestServer = require('@ianwalter/test-server')
-const { requester } = require('.')
+const { requester, Requester } = require('.')
 
 test('GET request for empty response', async ({ expect }) => {
   const server = await createTestServer()
@@ -43,6 +43,34 @@ test('POST request with JSON', async ({ expect }) => {
   const response = await requester.post(server.url, { body })
   expect(response.ok).toBe(true)
   expect(response.statusCode).toBe(201)
+  expect(response.body).toEqual(body)
+  await server.close()
+})
+
+test('Unauthorized GET request', async ({ expect }) => {
+  const server = await createTestServer()
+  server.use(ctx => (ctx.status = 401))
+  try {
+    await requester.get(server.url)
+  } catch (err) {
+    expect(err.response.ok).toBe(false)
+    expect(err.response.statusCode).toBe(401)
+    expect(err.response.body).toBe('Unauthorized')
+  }
+  await server.close()
+})
+
+test('Bad Request with shouldThrow = false', async ({ expect }) => {
+  const requester = new Requester({ shouldThrow: false })
+  const server = await createTestServer()
+  const body = { message: 'Ungodly gorgeous, buried in a chorus' }
+  server.use(ctx => {
+    ctx.status = 400
+    ctx.body = body
+  })
+  const response = await requester.get(server.url)
+  expect(response.ok).toBe(false)
+  expect(response.statusCode).toBe(400)
   expect(response.body).toEqual(body)
   await server.close()
 })

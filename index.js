@@ -1,5 +1,6 @@
 const http = require('http')
 const { version } = require('./package.json')
+const BaseError = require('@ianwalter/base-error')
 
 const headers = {
   'user-agent': `@ianwalter/requester/${version}`
@@ -11,10 +12,17 @@ const methods = [
   'delete'
 ]
 
+class HttpError extends BaseError {
+  constructor (response) {
+    super(response.statusText)
+    this.response = response
+  }
+}
+
 class Requester {
   constructor (options) {
     // Set the base options for the requester instance.
-    this.options = Object.assign({ headers }, options)
+    this.options = Object.assign({ headers, shouldThrow: true }, options)
 
     // Add convenience methods to the requester instance.
     methods.forEach(method => {
@@ -61,7 +69,11 @@ class Requester {
           // Add the .ok convenience property.
           response.ok = response.statusCode < 400 && response.statusCode > 199
 
-          resolve(response)
+          if (options.shouldThrow && !response.ok) {
+            reject(new HttpError(response))
+          } else {
+            resolve(response)
+          }
         })
       })
 
@@ -79,4 +91,4 @@ class Requester {
   }
 }
 
-module.exports = { Requester, requester: new Requester() }
+module.exports = { Requester, requester: new Requester(), HttpError }
