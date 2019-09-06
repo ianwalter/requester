@@ -6,7 +6,8 @@ jobs:
     container:
       image: node:12.9-slim
     steps:
-      - uses: actions/checkout@master
+      - name: Checkout
+        uses: actions/checkout@master
       - name: Install
         run: yarn
       - name: Lint
