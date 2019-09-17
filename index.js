@@ -50,24 +50,32 @@ class Requester {
     return new Promise((resolve, reject) => {
       // Create the request.
       const request = http.request(url, options, response => {
-        // Listen to the data event in order to receive the response body.
-        response.on('data', data => {
-          // Convert the response body from a Buffer to a String.
-          response.rawBody = data
-          response.body = data.toString()
+        const bodyChunks = []
 
-          // Automatically parse the response body as JSON if the Content-Type
-          // header is application/json.
-          if (response.headers['content-type'].includes('application/json')) {
-            response.body = JSON.parse(response.body)
-          }
-        })
+        // Listen to the data event to receive the response body as one or more
+        // buffers and collect them into the bodyChunks array.
+        response.on('data', data => bodyChunks.push(data))
 
         // When the response is complete, resolve the returned Promise with the
         // response.
         response.on('end', () => {
           // Add the .ok convenience property.
           response.ok = response.statusCode < 400 && response.statusCode > 199
+
+          if (bodyChunks.length) {
+            // Concatenate the buffers in the bodyChunks array into a single
+            // buffer.
+            response.rawBody = Buffer.concat(bodyChunks)
+
+            // Convert the body buffer into a string.
+            response.body = response.rawBody.toString()
+
+            // Automatically parse the response body as JSON if the Content-Type
+            // header is application/json.
+            if (response.headers['content-type'].includes('application/json')) {
+              response.body = JSON.parse(response.body)
+            }
+          }
 
           if (options.shouldThrow && !response.ok) {
             reject(new HttpError(response))
