@@ -1,7 +1,7 @@
 {
   "name": "@ianwalter/requester",
   "description": "A convenience wrapper around the Node.js http.request API",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "license": "SEE LICENSE IN LICENSE",
   "main": "index.js",
   "scripts": {
