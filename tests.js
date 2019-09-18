@@ -1,9 +1,9 @@
 const { test } = require('@ianwalter/bff')
-const createTestServer = require('@ianwalter/test-server')
+const { createKoaServer } = require('@ianwalter/test-server')
 const { requester, Requester } = require('.')
 
 test('GET request for empty response', async ({ expect }) => {
-  const server = await createTestServer()
+  const server = await createKoaServer()
   server.use(ctx => (ctx.status = 204))
   const response = await requester.get(server.url)
   expect(response.ok).toBe(true)
@@ -13,7 +13,7 @@ test('GET request for empty response', async ({ expect }) => {
 })
 
 test('GET request for text', async ({ expect }) => {
-  const server = await createTestServer()
+  const server = await createKoaServer()
   server.use(ctx => (ctx.body = 'test'))
   const response = await requester.get(server.url)
   expect(response.ok).toBe(true)
@@ -23,7 +23,7 @@ test('GET request for text', async ({ expect }) => {
 })
 
 test('GET request for JSON', async ({ expect }) => {
-  const server = await createTestServer()
+  const server = await createKoaServer()
   const body = { message: 'test' }
   server.use(ctx => (ctx.body = body))
   const response = await requester.get(server.url)
@@ -34,7 +34,7 @@ test('GET request for JSON', async ({ expect }) => {
 })
 
 test('POST request with JSON', async ({ expect }) => {
-  const server = await createTestServer()
+  const server = await createKoaServer()
   const body = { chef: 'Sanchez' }
   server.use(ctx => {
     ctx.status = ctx.request.body.chef === body.chef ? 201 : 400
@@ -48,7 +48,7 @@ test('POST request with JSON', async ({ expect }) => {
 })
 
 test('Unauthorized GET request', async ({ expect }) => {
-  const server = await createTestServer()
+  const server = await createKoaServer()
   server.use(ctx => (ctx.status = 401))
   try {
     await requester.get(server.url)
@@ -62,7 +62,7 @@ test('Unauthorized GET request', async ({ expect }) => {
 
 test('Bad Request with shouldThrow = false', async ({ expect }) => {
   const requester = new Requester({ shouldThrow: false })
-  const server = await createTestServer()
+  const server = await createKoaServer()
   const body = { message: 'Ungodly gorgeous, buried in a chorus' }
   server.use(ctx => {
     ctx.status = 400

@@ -60,7 +60,12 @@ class Requester {
 
         // Listen to the data event to receive the response body as one or more
         // buffers and collect them into the bodyChunks array.
-        response.on('data', data => bodyChunks.push(data))
+        response.on('data', data => {
+          if (this.options.logLevel === 'debug') {
+            this.print.debug('Data received', data.toString())
+          }
+          bodyChunks.push(data)
+        })
 
         // When the response is complete, resolve the returned Promise with the
         // response.
