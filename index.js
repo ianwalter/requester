@@ -1,6 +1,7 @@
 const http = require('http')
 const { version } = require('./package.json')
 const BaseError = require('@ianwalter/base-error')
+const { Print } = require('@ianwalter/print')
 
 const headers = {
   'user-agent': `@ianwalter/requester/${version}`
@@ -20,9 +21,12 @@ class HttpError extends BaseError {
 }
 
 class Requester {
-  constructor (options) {
+  constructor (options = {}) {
     // Set the base options for the requester instance.
     this.options = Object.assign({ headers, shouldThrow: true }, options)
+
+    // Set up a print instance used for printing debug statements.
+    this.print = new Print({ level: options.logLevel || 'info' })
 
     // Add convenience methods to the requester instance.
     methods.forEach(method => {
@@ -86,7 +90,10 @@ class Requester {
       })
 
       // If an error event was received, reject the returned Promise.
-      request.on('error', reject)
+      request.on('error', err => {
+        this.print.debug('Request error', err)
+        reject(err)
+      })
 
       // If a request body was passed, write it to the request.
       if (options.body) {
