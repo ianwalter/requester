@@ -1,4 +1,5 @@
 const http = require('http')
+const https = require('https')
 const { version } = require('./package.json')
 const BaseError = require('@ianwalter/base-error')
 const { Print } = require('@ianwalter/print')
@@ -39,9 +40,7 @@ class Requester {
     options = Object.assign({}, this.options, options)
 
     // If a base URL has been configured, use it to build the complete URL.
-    if (options.baseUrl) {
-      url = options.baseUrl + url
-    }
+    url = new URL(url, options.baseUrl)
 
     // If a body object or array was passed, automatically stringify it and add
     // a JSON Content-Type header.
@@ -53,7 +52,8 @@ class Requester {
 
     return new Promise((resolve, reject) => {
       // Create the request.
-      const request = http.request(url, options, response => {
+      const proto = url.protocol === 'https:' ? https : http
+      const request = proto.request(url, options, response => {
         const bodyChunks = []
 
         this.print.debug('Response', response)
@@ -67,8 +67,10 @@ class Requester {
           bodyChunks.push(data)
         })
 
-        const respond = () => {
-          response.resolved = true
+        // When the response is complete, resolve the returned Promise with the
+        // response.
+        response.on('end', () => {
+          this.print.debug('Response end event', response)
 
           // Add the .ok convenience property.
           response.ok = response.statusCode < 400 && response.statusCode > 199
@@ -93,26 +95,12 @@ class Requester {
           } else {
             resolve(response)
           }
-        }
-
-        request.on('close', () => {
-          this.print.debug('Request close event')
-          if (!response.resolved) {
-            respond()
-          }
-        })
-
-        // When the response is complete, resolve the returned Promise with the
-        // response.
-        response.on('end', () => {
-          this.print.debug('Response end event', response)
-          if (!response.resolved) {
-            respond()
-          }
         })
       })
 
       request.on('socket', evt => this.print.debug('Request socket event', evt))
+
+      request.on('close', () => this.print.debug('Request close event'))
 
       // If an error event was received, reject the returned Promise.
       request.on('error', err => {

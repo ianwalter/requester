@@ -74,3 +74,8 @@ test('Bad Request with shouldThrow = false', async ({ expect }) => {
   expect(response.body).toEqual(body)
   await server.close()
 })
+
+test('HTTPS GET request', async ({ expect }) => {
+  const response = await requester.get('https://httpbin.org/get')
+  expect(response.statusCode).toBe(200)
+})
