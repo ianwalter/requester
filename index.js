@@ -62,15 +62,13 @@ class Requester {
         // buffers and collect them into the bodyChunks array.
         response.on('data', data => {
           if (this.options.logLevel === 'debug') {
-            this.print.debug('Data received', data.toString())
+            this.print.debug('Response data event', data.toString())
           }
           bodyChunks.push(data)
         })
 
-        // When the response is complete, resolve the returned Promise with the
-        // response.
-        response.on('end', () => {
-          this.print.debug('Response End', response)
+        const respond = () => {
+          response.resolved = true
 
           // Add the .ok convenience property.
           response.ok = response.statusCode < 400 && response.statusCode > 199
@@ -95,16 +93,30 @@ class Requester {
           } else {
             resolve(response)
           }
+        }
+
+        request.on('close', () => {
+          this.print.debug('Request close event')
+          if (!response.resolved) {
+            respond()
+          }
+        })
+
+        // When the response is complete, resolve the returned Promise with the
+        // response.
+        response.on('end', () => {
+          this.print.debug('Response end event', response)
+          if (!response.resolved) {
+            respond()
+          }
         })
       })
 
-      request.on('socket', evt => this.print.debug('Socket event', evt))
-
-      request.on('close', evt => this.print.debug('Close event', evt))
+      request.on('socket', evt => this.print.debug('Request socket event', evt))
 
       // If an error event was received, reject the returned Promise.
       request.on('error', err => {
-        this.print.debug('Request error', err)
+        this.print.debug('Request error event', err)
         reject(err)
       })
 
