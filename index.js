@@ -93,6 +93,10 @@ class Requester {
         })
       })
 
+      request.on('socket', evt => this.print.debug('Socket event', evt))
+
+      request.on('close', evt => this.print.debug('Close event', evt))
+
       // If an error event was received, reject the returned Promise.
       request.on('error', err => {
         this.print.debug('Request error', err)
