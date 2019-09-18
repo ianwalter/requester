@@ -112,6 +112,20 @@
     marked "^0.7.0"
     marked-terminal "^3.3.0"
 
+"@ianwalter/print@^3.2.1":
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/@ianwalter/print/-/print-3.2.1.tgz#345760996467218de31b2a9241dae696ddb063d2"
+  integrity sha512-4UT+qfOIxBLDMExqFRFrvpST/YG/mOAo4f23JDcIlKDIMG3RRLyGINafc0sWUF/IMBhj0BTPU4AgpO50bzH4CQ==
+  dependencies:
+    "@ianwalter/clone" "^4.1.0"
+    "@ianwalter/log" "^3.0.0"
+    chalk "^2.4.2"
+    chromafi ianwalter/chromafi
+    has-ansi "^4.0.0"
+    has-emoji "^1.1.0"
+    marked "^0.7.0"
+    marked-terminal "^3.3.0"
+
 "@ianwalter/release@^2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@ianwalter/release/-/release-2.0.0.tgz#64df3bf111ec92cbbd7a607b057e9a7cec551304"
@@ -1599,6 +1613,13 @@ has-ansi@^3.0.0:
   integrity sha1-Ngd+8dFfMzSEqn+neihgbxxlWzc=
   dependencies:
     ansi-regex "^3.0.0"
+
+has-ansi@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/has-ansi/-/has-ansi-4.0.0.tgz#50e6b59f262c855343baff0ba15753247906fcd5"
+  integrity sha512-VvDupLMvFX9yyed3h1DajPUYQZv82EL2h9I9Jy0ays9gYRJ30hbmGapTiam5cISr42ZCuC3nRgyVBM/YZbpi9A==
+  dependencies:
+    ansi-regex "^4.1.0"
 
 has-emoji@^1.1.0:
   version "1.1.0"
