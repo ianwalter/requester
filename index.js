@@ -56,6 +56,8 @@ class Requester {
       const request = http.request(url, options, response => {
         const bodyChunks = []
 
+        this.print.debug('Response', response)
+
         // Listen to the data event to receive the response body as one or more
         // buffers and collect them into the bodyChunks array.
         response.on('data', data => bodyChunks.push(data))
@@ -63,6 +65,8 @@ class Requester {
         // When the response is complete, resolve the returned Promise with the
         // response.
         response.on('end', () => {
+          this.print.debug('Response End', response)
+
           // Add the .ok convenience property.
           response.ok = response.statusCode < 400 && response.statusCode > 199
 
