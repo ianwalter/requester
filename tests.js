@@ -75,7 +75,13 @@ test('Bad Request with shouldThrow = false', async ({ expect }) => {
   await server.close()
 })
 
-test('HTTPS GET request', async ({ expect }) => {
-  const response = await requester.get('https://httpbin.org/get')
+test('HTTPS request', async ({ expect }) => {
+  const requestbin = 'https://en5femwzf9sry.x.pipedream.net'
+  const body = { success: true }
+  let response = await requester.get(requestbin)
   expect(response.statusCode).toBe(200)
+  expect(response.body).toEqual(body)
+  response = await requester.post(requestbin, { body })
+  expect(response.statusCode).toBe(200)
+  expect(response.body).toEqual(body)
 })
