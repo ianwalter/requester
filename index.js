@@ -85,7 +85,11 @@ class Requester {
 
             // Automatically parse the response body as JSON if the Content-Type
             // header is application/json.
-            if (response.headers['content-type'].includes('application/json')) {
+            if (
+              response.headers &&
+              response.headers['content-type'] &&
+              response.headers['content-type'].includes('application/json')
+            ) {
               response.body = JSON.parse(response.body)
             }
           }
@@ -98,7 +102,7 @@ class Requester {
         })
       })
 
-      request.on('socket', evt => this.print.debug('Request socket event', evt))
+      request.on('socket', () => this.print.debug('Request socket event'))
 
       request.on('close', () => this.print.debug('Request close event'))
 
