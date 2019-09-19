@@ -43,6 +43,9 @@ class Requester {
     // If a base URL has been configured, use it to build the complete URL.
     url = new URL(url, options.baseUrl)
 
+    // Set the host header.
+    options.headers.host = url.host
+
     // If a body object or array was passed, automatically stringify it and add
     // a JSON Content-Type header.
     if (options.body && typeof options.body === 'object') {
