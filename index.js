@@ -1,8 +1,9 @@
 const http = require('http')
 const https = require('https')
-const { version } = require('./package.json')
+const { URL } = require('url')
 const BaseError = require('@ianwalter/base-error')
 const { Print } = require('@ianwalter/print')
+const { version } = require('./package.json')
 
 const headers = {
   'user-agent': `@ianwalter/requester/${version}`
@@ -52,8 +53,16 @@ class Requester {
 
     return new Promise((resolve, reject) => {
       // Create the request.
-      const proto = url.protocol === 'https:' ? https : http
-      const request = proto.request(url, options, response => {
+      const client = url.protocol === 'https:' ? https : http
+      const request = client.request(url, options)
+
+      // If an error event was received, reject the returned Promise.
+      request.once('error', err => {
+        this.print.debug('Request error event', err)
+        reject(err)
+      })
+
+      request.once('response', response => {
         const bodyChunks = []
 
         this.print.debug('Response', response)
@@ -106,18 +115,12 @@ class Requester {
 
       request.on('close', () => this.print.debug('Request close event'))
 
-      // If an error event was received, reject the returned Promise.
-      request.on('error', err => {
-        this.print.debug('Request error event', err)
-        reject(err)
-      })
-
       // If a request body was passed, write it to the request.
       if (options.body) {
         request.write(options.body)
       }
 
-      // Complete the request.
+      // Execute the request.
       request.end()
     })
   }
