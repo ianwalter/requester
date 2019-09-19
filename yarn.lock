@@ -169,10 +169,10 @@
   resolved "https://registry.yarnpkg.com/@ianwalter/renovate-config/-/renovate-config-1.2.0.tgz#f84e2fc56ad5d29c0876058c16c25db95baf74a9"
   integrity sha512-OSvziSdR0gxnWeH+9KbS9+HjojFa73vqNFU7wAxWs2ZV/9YofpKw0HwGtzyYgb1xVk8g6ZFPMYaTnFZ4Af6N/w==
 
-"@ianwalter/test-server@^2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@ianwalter/test-server/-/test-server-2.0.1.tgz#6a3a8dd0cb2393a9d54745fba41debda30bc17e8"
-  integrity sha512-FgDYGWYNnpf+0Ile4MJx9783Abuzz2DSrI2JT/7074ln96LVyR/f//O/vS7ymMeaJMg6gnWjIdj6Xv97yU8ezg==
+"@ianwalter/test-server@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@ianwalter/test-server/-/test-server-2.0.2.tgz#55bbe6f53ef4e083c650433400579d5e9d9fc9aa"
+  integrity sha512-Ix6MF6NPkPPxjTiO5c76VHPg0XW0vbvM7RbSoQSzWB74SqT63XCbXMbkACWJxqOnCVYBNM6AzTxmFhccATHUHw==
   dependencies:
     "@ianwalter/print" "^3.2.0"
     body-parser "^1.19.0"
@@ -181,6 +181,7 @@
     koa-bodyparser "^4.2.1"
     koa-json "^2.0.2"
     server-destroy "^1.0.1"
+    type-is "^1.6.18"
 
 "@ianwalter/timer@^1.1.0":
   version "1.1.0"
@@ -3622,7 +3623,7 @@ type-fest@^0.6.0:
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-0.6.0.tgz#8d2a2370d3df886eb5c90ada1c5bf6188acf838b"
   integrity sha512-q+MB8nYR1KDLrgr4G5yemftpMC7/QLqVndBmEEdqzmNj5dcFOO4Oo8qlwZE3ULT3+Zim1F8Kq4cBnikNhlCMlg==
 
-type-is@^1.6.16, type-is@~1.6.17, type-is@~1.6.18:
+type-is@^1.6.16, type-is@^1.6.18, type-is@~1.6.17, type-is@~1.6.18:
   version "1.6.18"
   resolved "https://registry.yarnpkg.com/type-is/-/type-is-1.6.18.tgz#4e552cd05df09467dcbc4ef739de89f2cf37c131"
   integrity sha512-TkRKr9sUTxEH8MdfuCSP7VizJyzRNMjj2J2do2Jr3Kym598JVdEksuzPQCnlFPW4ky9Q+iA+ma9BGm06XQBy8g==
