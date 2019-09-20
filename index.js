@@ -36,6 +36,32 @@ class Requester {
     })
   }
 
+  static shapeRequest (options) {
+    // If a body object or array was passed, automatically stringify it and add
+    // a JSON Content-Type header.
+    if (options.body && typeof options.body === 'object') {
+      options.headers['content-type'] = 'application/json'
+      options.body = JSON.stringify(options.body)
+      options.headers['content-length'] = `${Buffer.byteLength(options.body)}`
+    }
+  }
+
+  static shapeResponse (response) {
+    // Add the .ok convenience property.
+    response.ok = response.statusCode < 400 && response.statusCode > 199
+
+    // Automatically parse the response body as JSON if the Content-Type
+    // header is application/json.
+    if (
+      response.body &&
+      response.headers &&
+      response.headers['content-type'] &&
+      response.headers['content-type'].includes('application/json')
+    ) {
+      response.body = JSON.parse(response.body)
+    }
+  }
+
   request (url, options) {
     // Combine the base options and argument options into a single object.
     options = Object.assign({}, this.options, options)
@@ -46,13 +72,8 @@ class Requester {
     // Set the host header.
     options.headers.host = url.host
 
-    // If a body object or array was passed, automatically stringify it and add
-    // a JSON Content-Type header.
-    if (options.body && typeof options.body === 'object') {
-      options.headers['content-type'] = 'application/json'
-      options.body = JSON.stringify(options.body)
-      options.headers['content-length'] = `${Buffer.byteLength(options.body)}`
-    }
+    //
+    Requester.shapeRequest(options)
 
     return new Promise((resolve, reject) => {
       // Create the request.
@@ -82,10 +103,7 @@ class Requester {
         // When the response is complete, resolve the returned Promise with the
         // response.
         response.on('end', () => {
-          this.print.debug('Response end event', response)
-
-          // Add the .ok convenience property.
-          response.ok = response.statusCode < 400 && response.statusCode > 199
+          this.print.debug('Response end event')
 
           if (bodyChunks.length) {
             // Concatenate the buffers in the bodyChunks array into a single
@@ -94,17 +112,10 @@ class Requester {
 
             // Convert the body buffer into a string.
             response.body = response.rawBody.toString()
-
-            // Automatically parse the response body as JSON if the Content-Type
-            // header is application/json.
-            if (
-              response.headers &&
-              response.headers['content-type'] &&
-              response.headers['content-type'].includes('application/json')
-            ) {
-              response.body = JSON.parse(response.body)
-            }
           }
+
+          //
+          Requester.shapeResponse(response)
 
           if (options.shouldThrow && !response.ok) {
             reject(new HttpError(response))
