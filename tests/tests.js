@@ -1,6 +1,9 @@
 const { test } = require('@ianwalter/bff')
-const { createKoaServer } = require('@ianwalter/test-server')
-const { requester, Requester } = require('.')
+const {
+  createKoaServer,
+  createExpressServer
+} = require('@ianwalter/test-server')
+const { requester, Requester } = require('..')
 
 test('GET request for empty response', async ({ expect }) => {
   const server = await createKoaServer()
@@ -85,3 +88,14 @@ test('HTTPS request', async ({ expect }) => {
   expect(response.statusCode).toBe(200)
   expect(response.body).toEqual(body)
 })
+
+test('GET gzipped response', async ({ expect }) => {
+  const largeJsonBody = require('./largeJsonBody.json')
+  const server = await createExpressServer()
+  const headers = { 'accept-encoding': 'gzip, deflate, br' }
+  server.use((req, res) => res.json(largeJsonBody))
+  const response = await requester.get(server.url, { headers })
+  expect(typeof response.body).toBe('object')
+  await server.close()
+})
+

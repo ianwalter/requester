@@ -1,8 +1,10 @@
 const http = require('http')
 const https = require('https')
 const { URL } = require('url')
+const zlib = require('zlib')
 const BaseError = require('@ianwalter/base-error')
 const { Print } = require('@ianwalter/print')
+const parseJson = require('fast-json-parse')
 const { version } = require('./package.json')
 
 const headers = {
@@ -44,22 +46,42 @@ class Requester {
       options.body = JSON.stringify(options.body)
       options.headers['content-length'] = `${Buffer.byteLength(options.body)}`
     }
+
+    return options
   }
 
   static shapeResponse (response) {
     // Add the .ok convenience property.
     response.ok = response.statusCode < 400 && response.statusCode > 199
 
-    // Automatically parse the response body as JSON if the Content-Type
-    // header is application/json.
-    if (
-      response.body &&
-      response.headers &&
-      response.headers['content-type'] &&
-      response.headers['content-type'].includes('application/json')
-    ) {
-      response.body = JSON.parse(response.body)
+    if (response.body && response.headers) {
+      // Decompress the response if it has a content-encoding header indicating
+      // the body is encoded using gzip, deflate, or brotli.
+      const encoding = response.headers['content-encoding']
+      if (encoding) {
+        if (encoding === 'gzip') {
+          response.body = zlib.gunzipSync(response.rawBody)
+        } else if (encoding === 'br') {
+          response.body = zlib.brotliDecompressSync(response.rawBody)
+        } else if (encoding === 'deflate') {
+          response.body = zlib.deflateSync(response.rawBody)
+        }
+        response.body = response.body.toString()
+      }
+
+      // Automatically parse the response body as JSON if the Content-Type
+      // header is application/json.
+      const contentType = response.headers['content-type']
+      if (contentType && contentType.includes('application/json')) {
+        const result = parseJson(response.body)
+        if (result.err) {
+          throw result.err
+        }
+        response.body = result.value
+      }
     }
+
+    return response
   }
 
   request (url, options) {
@@ -72,7 +94,7 @@ class Requester {
     // Set the host header.
     options.headers.host = url.host
 
-    //
+    // Automatically add request headers based on the request body.
     Requester.shapeRequest(options)
 
     return new Promise((resolve, reject) => {
@@ -114,7 +136,7 @@ class Requester {
             response.body = response.rawBody.toString()
           }
 
-          //
+          // Shape the response based on the received response headers.
           Requester.shapeResponse(response)
 
           if (options.shouldThrow && !response.ok) {
