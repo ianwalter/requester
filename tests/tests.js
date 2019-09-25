@@ -98,4 +98,3 @@ test('GET gzipped response', async ({ expect }) => {
   expect(typeof response.body).toBe('object')
   await server.close()
 })
-
