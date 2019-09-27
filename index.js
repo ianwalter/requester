@@ -1,5 +1,6 @@
 const http = require('http')
 const https = require('https')
+const util = require('util')
 const { URL } = require('url')
 const zlib = require('zlib')
 const BaseError = require('@ianwalter/base-error')
@@ -27,10 +28,11 @@ class HttpError extends BaseError {
 class Requester {
   constructor (options = {}) {
     // Set the base options for the requester instance.
-    this.options = Object.assign({ headers, shouldThrow: true }, options)
+    const defaults = { shouldThrow: true, logLevel: 'info', headers }
+    this.options = Object.assign(defaults, options)
 
     // Set up a print instance used for printing debug statements.
-    this.print = new Print({ level: options.logLevel || 'info' })
+    this.print = new Print({ level: this.options.logLevel })
 
     // Add convenience methods to the requester instance.
     methods.forEach(method => {
@@ -96,6 +98,7 @@ class Requester {
 
     // Automatically add request headers based on the request body.
     Requester.shapeRequest(options)
+    this.print.debug('Request', util.inspect(url), options)
 
     return new Promise((resolve, reject) => {
       // Create the request.
@@ -111,7 +114,8 @@ class Requester {
       request.once('response', response => {
         const bodyChunks = []
 
-        this.print.debug('Response', response)
+        const { statusCode, statusText, headers } = response
+        this.print.debug('Response', { statusCode, statusText, headers })
 
         // Listen to the data event to receive the response body as one or more
         // buffers and collect them into the bodyChunks array.
