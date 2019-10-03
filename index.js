@@ -7,16 +7,18 @@ const BaseError = require('@ianwalter/base-error')
 const { Print } = require('@ianwalter/print')
 const parseJson = require('fast-json-parse')
 const { version } = require('./package.json')
+const merge = require('@ianwalter/merge')
 
-const headers = {
-  'user-agent': `@ianwalter/requester/${version}`
-}
 const methods = [
   'get',
   'post',
   'put',
   'delete'
 ]
+const headers = {
+  'user-agent': `@ianwalter/requester/${version}`
+}
+const defaults = { shouldThrow: true, logLevel: 'info', headers }
 
 class HttpError extends BaseError {
   constructor (response) {
@@ -26,10 +28,9 @@ class HttpError extends BaseError {
 }
 
 class Requester {
-  constructor (options = {}) {
+  constructor (options) {
     // Set the base options for the requester instance.
-    const defaults = { shouldThrow: true, logLevel: 'info', headers }
-    this.options = Object.assign(defaults, options)
+    this.options = merge({}, defaults, options)
 
     // Set up a print instance used for printing debug statements.
     this.print = new Print({ level: this.options.logLevel })
@@ -88,13 +89,13 @@ class Requester {
 
   request (url, options) {
     // Combine the base options and argument options into a single object.
-    options = Object.assign({}, this.options, options)
+    options = merge({}, this.options, options)
 
     // If a base URL has been configured, use it to build the complete URL.
     url = new URL(url, options.baseUrl)
 
-    // Set the host header.
-    options.headers.host = url.host
+    //
+    merge(options, url)
 
     // Automatically add request headers based on the request body.
     Requester.shapeRequest(options)
