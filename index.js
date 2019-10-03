@@ -99,7 +99,7 @@ class Requester {
 
     // Automatically add request headers based on the request body.
     Requester.shapeRequest(options)
-    this.print.debug('Request', util.inspect(url), options)
+    this.print.debug('Request options', util.inspect(options))
 
     return new Promise((resolve, reject) => {
       // Create the request.

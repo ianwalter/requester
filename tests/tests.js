@@ -3,7 +3,9 @@ const {
   createKoaServer,
   createExpressServer
 } = require('@ianwalter/test-server')
-const { requester, Requester } = require('..')
+const { Requester } = require('..')
+
+const requester = new Requester({ logLevel: 'debug' })
 
 test('GET request for empty response', async ({ expect }) => {
   const server = await createKoaServer()
