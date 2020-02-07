@@ -5,7 +5,7 @@ const { Requester } = require('..')
 const requester = new Requester({ logLevel: 'debug' })
 
 test('GET request for empty response', async ({ expect }) => {
-  const app = createApp({ log: false })
+  const app = createApp({ log: false, port: 15101 })
   app.use(ctx => (ctx.status = 204))
   const { server } = await app.start()
   const response = await requester.get(server.url)
@@ -16,7 +16,7 @@ test('GET request for empty response', async ({ expect }) => {
 })
 
 test('GET request for text', async ({ expect }) => {
-  const app = createApp({ log: false })
+  const app = createApp({ log: false, port: 15102 })
   app.use(ctx => (ctx.body = 'test'))
   const { server } = await app.start()
   const response = await requester.get(server.url)
@@ -27,7 +27,7 @@ test('GET request for text', async ({ expect }) => {
 })
 
 test('GET request for JSON', async ({ expect }) => {
-  const app = createApp({ log: false })
+  const app = createApp({ log: false, port: 15103 })
   const body = { message: 'test' }
   app.use(ctx => (ctx.body = body))
   const { server } = await app.start()
@@ -39,7 +39,7 @@ test('GET request for JSON', async ({ expect }) => {
 })
 
 test('POST request with JSON', async ({ expect }) => {
-  const app = createApp({ log: false })
+  const app = createApp({ log: false, port: 15104 })
   const body = { chef: 'Sanchez' }
   app.use(ctx => {
     ctx.status = ctx.request.body.chef === body.chef ? 201 : 400
@@ -54,7 +54,7 @@ test('POST request with JSON', async ({ expect }) => {
 })
 
 test('Unauthorized GET request', async ({ expect }) => {
-  const app = createApp({ log: false })
+  const app = createApp({ log: false, port: 15105 })
   app.use(ctx => (ctx.status = 401))
   const { server } = await app.start()
   try {
@@ -68,7 +68,7 @@ test('Unauthorized GET request', async ({ expect }) => {
 })
 
 test('Bad Request with shouldThrow = false', async ({ expect }) => {
-  const app = createApp({ log: false })
+  const app = createApp({ log: false, port: 15106 })
   const requester = new Requester({ shouldThrow: false })
   const body = { message: 'Ungodly gorgeous, buried in a chorus' }
   app.use(ctx => {
