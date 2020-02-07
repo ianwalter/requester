@@ -2,6 +2,7 @@
 > A convenience wrapper around the Node.js [http.request][nodeUrl] API
 
 [![npm page][npmImage]][npmUrl]
+[![CI][ciImage]][ciUrl]
 
 ## Installation
 
@@ -40,13 +41,15 @@ const response = await requester.get('http://example.com/api/v1/cats', options)
 
 ## License
 
-Apache 2.0 with Commons Clause - See [LICENSE][licenseUrl]
+Hippocratic License - See [LICENSE][licenseUrl]
 
 &nbsp;
 
-Created by [Ian Walter](https://iankwalter.com)
+Created by [Ian Walter](https://ianwalter.dev)
 
 [nodeUrl]: https://nodejs.org/api/http.html#http_http_request_url_options_callback
 [npmImage]: https://img.shields.io/npm/v/@ianwalter/requester.svg
 [npmUrl]: https://www.npmjs.com/package/@ianwalter/requester
+[ciImage]: https://github.com/ianwalter/requester/workflows/CI/badge.svg
+[ciUrl]: https://github.com/ianwalter/requester/actions
 [licenseUrl]: https://github.com/ianwalter/requester/blob/master/LICENSE
