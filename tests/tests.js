@@ -1,15 +1,13 @@
 const { test } = require('@ianwalter/bff')
-const {
-  createKoaServer,
-  createExpressServer
-} = require('@ianwalter/test-server')
+const { createApp } = require('@ianwalter/nrg')
 const { Requester } = require('..')
 
 const requester = new Requester({ logLevel: 'debug' })
 
 test('GET request for empty response', async ({ expect }) => {
-  const server = await createKoaServer()
-  server.use(ctx => (ctx.status = 204))
+  const app = createApp({ log: false })
+  app.use(ctx => (ctx.status = 204))
+  const { server } = await app.start()
   const response = await requester.get(server.url)
   expect(response.ok).toBe(true)
   expect(response.statusCode).toBe(204)
@@ -18,8 +16,9 @@ test('GET request for empty response', async ({ expect }) => {
 })
 
 test('GET request for text', async ({ expect }) => {
-  const server = await createKoaServer()
-  server.use(ctx => (ctx.body = 'test'))
+  const app = createApp({ log: false })
+  app.use(ctx => (ctx.body = 'test'))
+  const { server } = await app.start()
   const response = await requester.get(server.url)
   expect(response.ok).toBe(true)
   expect(response.statusCode).toBe(200)
@@ -28,9 +27,10 @@ test('GET request for text', async ({ expect }) => {
 })
 
 test('GET request for JSON', async ({ expect }) => {
-  const server = await createKoaServer()
+  const app = createApp({ log: false })
   const body = { message: 'test' }
-  server.use(ctx => (ctx.body = body))
+  app.use(ctx => (ctx.body = body))
+  const { server } = await app.start()
   const response = await requester.get(server.url)
   expect(response.ok).toBe(true)
   expect(response.statusCode).toBe(200)
@@ -39,12 +39,13 @@ test('GET request for JSON', async ({ expect }) => {
 })
 
 test('POST request with JSON', async ({ expect }) => {
-  const server = await createKoaServer()
+  const app = createApp({ log: false })
   const body = { chef: 'Sanchez' }
-  server.use(ctx => {
+  app.use(ctx => {
     ctx.status = ctx.request.body.chef === body.chef ? 201 : 400
     ctx.body = ctx.request.body
   })
+  const { server } = await app.start()
   const response = await requester.post(server.url, { body })
   expect(response.ok).toBe(true)
   expect(response.statusCode).toBe(201)
@@ -53,8 +54,9 @@ test('POST request with JSON', async ({ expect }) => {
 })
 
 test('Unauthorized GET request', async ({ expect }) => {
-  const server = await createKoaServer()
-  server.use(ctx => (ctx.status = 401))
+  const app = createApp({ log: false })
+  app.use(ctx => (ctx.status = 401))
+  const { server } = await app.start()
   try {
     await requester.get(server.url)
   } catch (err) {
@@ -66,13 +68,14 @@ test('Unauthorized GET request', async ({ expect }) => {
 })
 
 test('Bad Request with shouldThrow = false', async ({ expect }) => {
+  const app = createApp({ log: false })
   const requester = new Requester({ shouldThrow: false })
-  const server = await createKoaServer()
   const body = { message: 'Ungodly gorgeous, buried in a chorus' }
-  server.use(ctx => {
+  app.use(ctx => {
     ctx.status = 400
     ctx.body = body
   })
+  const { server } = await app.start()
   const response = await requester.get(server.url)
   expect(response.ok).toBe(false)
   expect(response.statusCode).toBe(400)
@@ -91,7 +94,7 @@ test('HTTPS request', async ({ expect }) => {
   expect(response.body).toEqual(body)
 })
 
-test('GET gzipped response', async ({ expect }) => {
+test.skip('GET gzipped response', async ({ expect }) => {
   const largeJsonBody = require('./largeJsonBody.json')
   const server = await createExpressServer()
   const headers = { 'accept-encoding': 'gzip, deflate, br' }
