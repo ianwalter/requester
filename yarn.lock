@@ -285,7 +285,7 @@
   resolved "https://registry.yarnpkg.com/@ianwalter/clone/-/clone-5.0.0.tgz#d5e20f3b9eccfbbb094f6f38e1cf6d31818b51ac"
   integrity sha512-N0BlOwYog4ASu2OP+9q2xM3fvJDtFm4YhhZG2dmn0rmueJGhqC/OSJIHgixL6wORDP0w9+sRJdI97b0IoWBdYw==
 
-"@ianwalter/cloneable@^1.0.0", "@ianwalter/cloneable@^1.0.1":
+"@ianwalter/cloneable@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@ianwalter/cloneable/-/cloneable-1.0.1.tgz#627489e86020f035559b263762e1ff6329b8c08e"
   integrity sha512-1+SjoHTyEMK/UB4ASZpQdArMk2K3RlSptbG0GVeNXLfWeo5H+RdTbhcEk4GUYKEf3SskIXYrS8FvtL02d/6D+g==
@@ -369,20 +369,20 @@
     parseurl "^1.3.1"
     uid-safe "^2.1.4"
 
-"@ianwalter/nrg@^0.0.70":
-  version "0.0.70"
-  resolved "https://registry.yarnpkg.com/@ianwalter/nrg/-/nrg-0.0.70.tgz#da7dfd8ba857400a5cd6f41a28c219842f69d1df"
-  integrity sha512-VLZVzAOMMtuEwkBu/wO6pn4dQH0FHIJyBMV6Pgk6/hUMkdeNs9Ugn7rQ/sHXuKZYatVPPfa5CAs9bNn37zexOg==
+"@ianwalter/nrg@^0.0.71":
+  version "0.0.71"
+  resolved "https://registry.yarnpkg.com/@ianwalter/nrg/-/nrg-0.0.71.tgz#101f6837648f796eb1161f0ad23478efb9f5c33d"
+  integrity sha512-pS48cO9cvjhimvTexLyBX+RlbGetCZK+fU1ZDXCxoPATUXGqwnH5SQEb77ORNaz1aJxvIm++Fdc8+o/oRvcKTg==
   dependencies:
     "@ianwalter/cli" "^4.1.0"
-    "@ianwalter/cloneable" "^1.0.0"
+    "@ianwalter/cloneable" "^1.0.1"
     "@ianwalter/correct" "^1.1.0"
     "@ianwalter/merge" "^5.0.0"
     "@ianwalter/nrg-mq" "^0.0.1"
     "@ianwalter/nrg-router" "^0.2.5"
     "@ianwalter/nrg-session" "^6.0.0"
-    "@ianwalter/pino-print" "^3.1.0"
-    "@ianwalter/print" "^5.0.0"
+    "@ianwalter/pino-print" "^4.1.0"
+    "@ianwalter/print" "^5.1.0"
     "@ianwalter/url" "^1.1.0"
     bcrypt "3.0.4-napi"
     date-fns "^2.9.0"
@@ -413,13 +413,13 @@
     supertest "^4.0.2"
     webpack "^4.41.5"
 
-"@ianwalter/pino-print@^3.1.0":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@ianwalter/pino-print/-/pino-print-3.1.0.tgz#98fac7cc3ec1195f1d68bd57aa62749fdc411e07"
-  integrity sha512-QOal6D5omTzJ1Wj+DcXMptFPV14XSh5y0QLUxCwJi6tYDKSxOezaZvta3tpeakkHCnJGo652hqHP5jA9HzOByw==
+"@ianwalter/pino-print@^4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@ianwalter/pino-print/-/pino-print-4.1.0.tgz#68bf280fef9c8058c3c863cd28a019ef06e1dbcf"
+  integrity sha512-jgvynYqx2p3WfiUD3OlrT7hOSsrbXTPUr4D25iQ0yT9Al5eV6i4fwf/jz8pYyeDMtn7EHHxnz2sjUB6QXyzqlw==
   dependencies:
-    "@ianwalter/cli" "^3.0.0"
-    "@ianwalter/print" "^5.0.0"
+    "@ianwalter/cli" "^4.1.0"
+    "@ianwalter/print" "^5.1.0"
     split2 "^3.1.1"
     strip-ansi "^6.0.0"
 
