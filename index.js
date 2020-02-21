@@ -170,6 +170,8 @@ class Requester {
         request.abort()
       })
 
+      request.on('error', reject)
+
       // If a request body was passed, write it to the request stream.
       if (options.body) {
         request.write(options.body)
