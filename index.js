@@ -5,7 +5,6 @@ const { URL } = require('url')
 const zlib = require('zlib')
 const BaseError = require('@ianwalter/base-error')
 const { Print } = require('@ianwalter/print')
-const parseJson = require('fast-json-parse')
 const { version } = require('./package.json')
 const merge = require('@ianwalter/merge')
 
@@ -62,30 +61,41 @@ class Requester {
     // Add the .ok convenience property.
     response.ok = response.statusCode < 400 && response.statusCode > 199
 
-    if (response.body && response.headers) {
+    if (response.body) {
       // Decompress the response if it has a content-encoding header indicating
       // the body is encoded using gzip, deflate, or brotli.
-      const encoding = response.headers['content-encoding']
+      const encoding = response.headers && response.headers['content-encoding']
       if (encoding) {
         if (encoding === 'gzip') {
-          response.body = zlib.gunzipSync(response.rawBody)
+          response.body = zlib.gunzipSync(response.body)
         } else if (encoding === 'br') {
-          response.body = zlib.brotliDecompressSync(response.rawBody)
+          response.body = zlib.brotliDecompressSync(response.body)
         } else if (encoding === 'deflate') {
-          response.body = zlib.deflateSync(response.rawBody)
+          response.body = zlib.deflateSync(response.body)
         }
+      }
+
+      // If the response content type is text or JSON, set the body Buffer to
+      // rawBody and the stringified version of it to body on the response.
+      const contentType = response.headers && response.headers['content-type']
+      const isJson = contentType && contentType.includes('application/json')
+      if (
+        !contentType ||
+        (contentType && contentType.includes('text/')) ||
+        isJson
+      ) {
+        response.rawBody = response.body
         response.body = response.body.toString()
       }
 
       // Automatically parse the response body as JSON if the Content-Type
       // header is application/json.
-      const contentType = response.headers['content-type']
-      if (contentType && contentType.includes('application/json')) {
-        const result = parseJson(response.body)
-        if (result.err) {
-          throw result.err
+      if (isJson) {
+        try {
+          response.body = JSON.parse(response.body)
+        } catch (err) {
+          this.print.error(err)
         }
-        response.body = result.value
       }
     }
 
@@ -98,9 +108,6 @@ class Requester {
 
     // If a base URL has been configured, use it to build the complete URL.
     url = new URL(url, options.baseUrl)
-
-    //
-    merge(options, url)
 
     // Automatically add request headers based on the request body.
     Requester.shapeRequest(options)
@@ -137,13 +144,10 @@ class Requester {
         response.on('end', () => {
           this.print.debug('Response end event')
 
+          // Set the response body to a single Buffer by concatenating the
+          // chunks in the bodyChunks array.
           if (bodyChunks.length) {
-            // Concatenate the buffers in the bodyChunks array into a single
-            // buffer.
-            response.rawBody = Buffer.concat(bodyChunks)
-
-            // Convert the body buffer into a string.
-            response.body = response.rawBody.toString()
+            response.body = Buffer.concat(bodyChunks)
           }
 
           // Shape the response based on the received response headers.
@@ -166,12 +170,12 @@ class Requester {
         request.abort()
       })
 
-      // If a request body was passed, write it to the request.
+      // If a request body was passed, write it to the request stream.
       if (options.body) {
         request.write(options.body)
       }
 
-      // Execute the request.
+      // Execute the request by ending the stream.
       request.end()
     })
   }

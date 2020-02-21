@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
-    "test": "bff -V"
+    "test": "bff --verbose --timeout 61000"
   },
   "repository": {
     "type": "git",
@@ -29,8 +29,7 @@
   "dependencies": {
     "@ianwalter/base-error": "^6.1.0",
     "@ianwalter/merge": "^5.0.0",
-    "@ianwalter/print": "^5.1.0",
-    "fast-json-parse": "^1.0.3"
+    "@ianwalter/print": "^5.1.0"
   },
   "devDependencies": {
     "@ianwalter/bff": "^9.4.1",
