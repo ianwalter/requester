@@ -70,6 +70,7 @@ test('Unauthorized GET request', async ({ expect }) => {
   try {
     await requester.get(server.url)
   } catch (err) {
+    requester.print.error(err)
     expect(err.response.ok).toBe(false)
     expect(err.response.statusCode).toBe(401)
     expect(err.response.body).toBe('Unauthorized')

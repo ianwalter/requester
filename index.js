@@ -26,7 +26,7 @@ const defaults = {
 
 class HttpError extends BaseError {
   constructor (response) {
-    super(response.statusText)
+    super(response.statusText || 'Request failed')
     this.response = response
   }
 }
