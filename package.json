@@ -29,7 +29,7 @@
   "dependencies": {
     "@ianwalter/base-error": "^6.1.0",
     "@ianwalter/merge": "^5.0.0",
-    "@ianwalter/print": "^5.2.1"
+    "@ianwalter/print": "^5.2.2"
   },
   "devDependencies": {
     "@ianwalter/bff": "^9.5.0",
