@@ -120,7 +120,7 @@ class Requester {
 
       // If an error event was received, reject the returned Promise.
       request.once('error', err => {
-        this.print.debug('Request error event', err)
+        err.request = { url, options }
         reject(err)
       })
 
