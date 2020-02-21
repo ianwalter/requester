@@ -8,22 +8,28 @@ test('GET request for empty response', async ({ expect }) => {
   const app = createApp({ log: false, port: 15101 })
   app.use(ctx => (ctx.status = 204))
   const { server } = await app.start()
-  const response = await requester.get(server.url)
-  expect(response.ok).toBe(true)
-  expect(response.statusCode).toBe(204)
-  expect(response.body).toBe(undefined)
-  await server.close()
+  try {
+    const response = await requester.get(server.url)
+    expect(response.ok).toBe(true)
+    expect(response.statusCode).toBe(204)
+    expect(response.body).toBe(undefined)
+  } finally {
+    await server.close()
+  }
 })
 
 test('GET request for text', async ({ expect }) => {
   const app = createApp({ log: false, port: 15102 })
   app.use(ctx => (ctx.body = 'test'))
   const { server } = await app.start()
-  const response = await requester.get(server.url)
-  expect(response.ok).toBe(true)
-  expect(response.statusCode).toBe(200)
-  expect(response.body).toBe('test')
-  await server.close()
+  try {
+    const response = await requester.get(server.url)
+    expect(response.ok).toBe(true)
+    expect(response.statusCode).toBe(200)
+    expect(response.body).toBe('test')
+  } finally {
+    await server.close()
+  }
 })
 
 test('GET request for JSON', async ({ expect }) => {
@@ -31,11 +37,14 @@ test('GET request for JSON', async ({ expect }) => {
   const body = { message: 'test' }
   app.use(ctx => (ctx.body = body))
   const { server } = await app.start()
-  const response = await requester.get(server.url)
-  expect(response.ok).toBe(true)
-  expect(response.statusCode).toBe(200)
-  expect(response.body).toEqual(body)
-  await server.close()
+  try {
+    const response = await requester.get(server.url)
+    expect(response.ok).toBe(true)
+    expect(response.statusCode).toBe(200)
+    expect(response.body).toEqual(body)
+  } finally {
+    await server.close()
+  }
 })
 
 test('POST request with JSON', async ({ expect }) => {
@@ -46,11 +55,14 @@ test('POST request with JSON', async ({ expect }) => {
     ctx.body = ctx.request.body
   })
   const { server } = await app.start()
-  const response = await requester.post(server.url, { body })
-  expect(response.ok).toBe(true)
-  expect(response.statusCode).toBe(201)
-  expect(response.body).toEqual(body)
-  await server.close()
+  try {
+    const response = await requester.post(server.url, { body })
+    expect(response.ok).toBe(true)
+    expect(response.statusCode).toBe(201)
+    expect(response.body).toEqual(body)
+  } finally {
+    await server.close()
+  }
 })
 
 test('Unauthorized GET request', async ({ expect }) => {
@@ -63,8 +75,9 @@ test('Unauthorized GET request', async ({ expect }) => {
     expect(err.response.ok).toBe(false)
     expect(err.response.statusCode).toBe(401)
     expect(err.response.body).toBe('Unauthorized')
+  } finally {
+    await server.close()
   }
-  await server.close()
 })
 
 test('Bad Request with shouldThrow = false', async ({ expect }) => {
@@ -76,11 +89,14 @@ test('Bad Request with shouldThrow = false', async ({ expect }) => {
     ctx.body = body
   })
   const { server } = await app.start()
-  const response = await requester.get(server.url)
-  expect(response.ok).toBe(false)
-  expect(response.statusCode).toBe(400)
-  expect(response.body).toEqual(body)
-  await server.close()
+  try {
+    const response = await requester.get(server.url)
+    expect(response.ok).toBe(false)
+    expect(response.statusCode).toBe(400)
+    expect(response.body).toEqual(body)
+  } finally {
+    await server.close()
+  }
 })
 
 test('HTTPS request', async ({ expect }) => {
