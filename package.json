@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
-    "test": "bff -c 2 -V"
+    "test": "bff -V"
   },
   "repository": {
     "type": "git",

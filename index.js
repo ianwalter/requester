@@ -18,7 +18,12 @@ const methods = [
 const headers = {
   'user-agent': `@ianwalter/requester/${version}`
 }
-const defaults = { shouldThrow: true, logLevel: 'info', headers }
+const defaults = {
+  shouldThrow: true,
+  logLevel: 'info',
+  headers,
+  timeout: 60000
+}
 
 class HttpError extends BaseError {
   constructor (response) {
@@ -155,6 +160,11 @@ class Requester {
       request.on('socket', () => this.print.debug('Request socket event'))
 
       request.on('close', () => this.print.debug('Request close event'))
+
+      request.on('timeout', () => {
+        this.print.debug('Request timeout event')
+        request.abort()
+      })
 
       // If a request body was passed, write it to the request.
       if (options.body) {
