@@ -3,7 +3,7 @@ const { createApp } = require('@ianwalter/nrg')
 const { requester, Requester } = require('..')
 
 test('GET request for empty response', async ({ expect }) => {
-  const app = createApp({ log: false, port: 15101 })
+  const app = createApp()
   app.use(ctx => (ctx.status = 204))
   const { server } = await app.start()
   try {
@@ -17,7 +17,7 @@ test('GET request for empty response', async ({ expect }) => {
 })
 
 test('GET request for text', async ({ expect }) => {
-  const app = createApp({ log: false, port: 15102 })
+  const app = createApp()
   app.use(ctx => (ctx.body = 'test'))
   const { server } = await app.start()
   try {
@@ -31,7 +31,7 @@ test('GET request for text', async ({ expect }) => {
 })
 
 test('GET request for JSON', async ({ expect }) => {
-  const app = createApp({ log: false, port: 15103 })
+  const app = createApp()
   const body = { message: 'test' }
   app.use(ctx => (ctx.body = body))
   const { server } = await app.start()
@@ -46,7 +46,7 @@ test('GET request for JSON', async ({ expect }) => {
 })
 
 test('POST request with JSON', async ({ expect }) => {
-  const app = createApp({ log: false, port: 15104 })
+  const app = createApp()
   const body = { chef: 'Sanchez' }
   app.use(ctx => {
     ctx.status = ctx.request.body.chef === body.chef ? 201 : 400
@@ -64,7 +64,7 @@ test('POST request with JSON', async ({ expect }) => {
 })
 
 test('Unauthorized GET request', async ({ expect }) => {
-  const app = createApp({ log: false, port: 15105 })
+  const app = createApp()
   app.use(ctx => (ctx.status = 401))
   const { server } = await app.start()
   try {
@@ -80,7 +80,7 @@ test('Unauthorized GET request', async ({ expect }) => {
 })
 
 test('Bad Request with shouldThrow = false', async ({ expect }) => {
-  const app = createApp({ log: false, port: 15106 })
+  const app = createApp()
   const requester = new Requester({ shouldThrow: false })
   const body = { message: 'Ungodly gorgeous, buried in a chorus' }
   app.use(ctx => {
