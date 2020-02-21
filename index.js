@@ -1,6 +1,5 @@
 const http = require('http')
 const https = require('https')
-const util = require('util')
 const { URL } = require('url')
 const zlib = require('zlib')
 const BaseError = require('@ianwalter/base-error')
