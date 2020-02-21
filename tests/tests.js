@@ -1,6 +1,8 @@
 const { test } = require('@ianwalter/bff')
 const { createApp } = require('@ianwalter/nrg')
-const { requester, Requester } = require('..')
+const { Requester } = require('..')
+
+const requester = new Requester({ logLevel: 'debug' })
 
 test('GET request for empty response', async ({ expect }) => {
   const app = createApp()
