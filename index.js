@@ -15,8 +15,7 @@ const methods = [
   'delete'
 ]
 const headers = {
-  'user-agent': `@ianwalter/requester/${version}`,
-  connection: 'close'
+  'user-agent': `@ianwalter/requester/${version}`
 }
 const defaults = {
   shouldThrow: true,

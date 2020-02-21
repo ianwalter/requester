@@ -65,7 +65,10 @@ test('POST request with JSON', async ({ expect }) => {
 
 test('Unauthorized GET request', async ({ expect }) => {
   const app = createApp()
-  app.use(ctx => (ctx.status = 401))
+  app.use(ctx => {
+    ctx.log.info('Entered 4')
+    ctx.status = 401
+  })
   const { server } = await app.start()
   try {
     await requester.get(server.url)
@@ -84,6 +87,7 @@ test('Bad Request with shouldThrow = false', async ({ expect }) => {
   const requester = new Requester({ shouldThrow: false })
   const body = { message: 'Ungodly gorgeous, buried in a chorus' }
   app.use(ctx => {
+    ctx.log.info('Entered 5')
     ctx.status = 400
     ctx.body = body
   })
