@@ -45,19 +45,18 @@ class Requester {
     })
   }
 
-  static shapeRequest (options) {
+  shapeRequest (options) {
     // If a body object or array was passed, automatically stringify it and add
     // a JSON Content-Type header.
     if (options.body && typeof options.body === 'object') {
+      this.print.debug('Body is JSON', { body: options.body })
       options.headers['content-type'] = 'application/json'
       options.body = JSON.stringify(options.body)
       options.headers['content-length'] = `${Buffer.byteLength(options.body)}`
     }
-
-    return options
   }
 
-  static shapeResponse (response) {
+  shapeResponse (response) {
     // Add the .ok convenience property.
     response.ok = response.statusCode < 400 && response.statusCode > 199
 
@@ -98,8 +97,6 @@ class Requester {
         }
       }
     }
-
-    return response
   }
 
   request (url, options) {
@@ -112,7 +109,7 @@ class Requester {
     }
 
     // Automatically add request headers based on the request body.
-    Requester.shapeRequest(options)
+    this.shapeRequest(options)
     this.print.debug('Request', { url, options })
 
     return new Promise((resolve, reject) => {
@@ -153,7 +150,7 @@ class Requester {
           }
 
           // Shape the response based on the received response headers.
-          Requester.shapeResponse(response)
+          this.shapeResponse(response)
 
           if (options.shouldThrow && !response.ok) {
             reject(new HttpError(response))
