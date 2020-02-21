@@ -107,7 +107,9 @@ class Requester {
     options = merge({}, this.options, options)
 
     // If a base URL has been configured, use it to build the complete URL.
-    url = new URL(url, options.baseUrl)
+    if (options.baseUrl) {
+      url = new URL(url, options.baseUrl).toString()
+    }
 
     // Automatically add request headers based on the request body.
     Requester.shapeRequest(options)
@@ -115,7 +117,7 @@ class Requester {
 
     return new Promise((resolve, reject) => {
       // Create the request.
-      const client = url.protocol === 'https:' ? https : http
+      const client = url.indexOf('http://') === 0 ? http : https
       const request = client.request(url, options)
 
       // If an error event was received, reject the returned Promise.

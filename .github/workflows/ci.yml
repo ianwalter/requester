@@ -6,7 +6,7 @@ on:
   pull_request:
 jobs:
   build:
-    timeout-minutes: 5
+    timeout-minutes: 3
     runs-on: ubuntu-latest
     container:
       image: node:13.8
