@@ -6,7 +6,6 @@ const BaseError = require('@ianwalter/base-error')
 const { Print } = require('@ianwalter/print')
 const { version } = require('./package.json')
 const merge = require('@ianwalter/merge')
-const clone = require('@ianwalter/clone')
 
 const methods = [
   'get',
@@ -34,7 +33,7 @@ class HttpError extends BaseError {
 class Requester {
   constructor (options) {
     // Set the base options for the requester instance.
-    this.options = merge(clone(defaults), options)
+    this.options = merge({}, defaults, options)
 
     // Set up a print instance used for printing debug statements.
     this.print = new Print({ level: this.options.logLevel })
@@ -101,7 +100,7 @@ class Requester {
 
   request (url, options) {
     // Combine the base options and argument options into a single object.
-    options = merge(clone(this.options), options)
+    options = merge({}, this.options, options)
 
     // If a base URL has been configured, use it to build the complete URL.
     if (options.baseUrl) {
@@ -110,7 +109,7 @@ class Requester {
 
     // Automatically add request headers based on the request body.
     this.shapeRequest(options)
-    this.print.debug('Request', { url, options })
+    this.print.debug('Request', { url, options, base: this.options })
 
     return new Promise((resolve, reject) => {
       // Create the request.
