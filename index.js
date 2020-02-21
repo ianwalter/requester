@@ -15,7 +15,8 @@ const methods = [
   'delete'
 ]
 const headers = {
-  'user-agent': `@ianwalter/requester/${version}`
+  'user-agent': `@ianwalter/requester/${version}`,
+  connection: 'close'
 }
 const defaults = {
   shouldThrow: true,
@@ -161,16 +162,10 @@ class Requester {
         })
       })
 
-      request.on('socket', () => this.print.debug('Request socket event'))
-
-      request.on('close', () => this.print.debug('Request close event'))
-
-      request.on('timeout', () => {
+      request.once('timeout', () => {
         this.print.debug('Request timeout event')
         request.abort()
       })
-
-      request.on('error', reject)
 
       // If a request body was passed, write it to the request stream.
       if (options.body) {
