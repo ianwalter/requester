@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint .",
-    "test": "bff --verbose --timeout 61000"
+    "test": "bff --verbose"
   },
   "repository": {
     "type": "git",

@@ -48,7 +48,7 @@ class Requester {
     // If a body object or array was passed, automatically stringify it and add
     // a JSON Content-Type header.
     if (options.body && typeof options.body === 'object') {
-      this.print.debug('Body is JSON', { body: options.body })
+      this.print.debug('Request body is JSON', { body: options.body })
       options.headers['content-type'] = 'application/json'
       options.body = JSON.stringify(options.body)
       options.headers['content-length'] = `${Buffer.byteLength(options.body)}`
@@ -65,10 +65,13 @@ class Requester {
       const encoding = response.headers && response.headers['content-encoding']
       if (encoding) {
         if (encoding === 'gzip') {
+          this.print.debug('Response body is encoded using gzip')
           response.body = zlib.gunzipSync(response.body)
         } else if (encoding === 'br') {
+          this.print.debug('Response body is encoded using brotli')
           response.body = zlib.brotliDecompressSync(response.body)
         } else if (encoding === 'deflate') {
+          this.print.debug('Response body is encoded using deflate')
           response.body = zlib.deflateSync(response.body)
         }
       }
@@ -89,6 +92,7 @@ class Requester {
       // Automatically parse the response body as JSON if the Content-Type
       // header is application/json.
       if (isJson) {
+        this.print.debug('Response body is JSON')
         try {
           response.body = JSON.parse(response.body)
         } catch (err) {
@@ -109,7 +113,7 @@ class Requester {
 
     // Automatically add request headers based on the request body.
     this.shapeRequest(options)
-    this.print.debug('Request', { url, options, base: this.options })
+    this.print.debug('Request', { url, options })
 
     return new Promise((resolve, reject) => {
       // Create the request.
