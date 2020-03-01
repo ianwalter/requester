@@ -2,6 +2,7 @@ const http = require('http')
 const https = require('https')
 const { URL } = require('url')
 const zlib = require('zlib')
+const querystring = require('querystring')
 const BaseError = require('@ianwalter/base-error')
 const { Print } = require('@ianwalter/print')
 const { version } = require('./package.json')
@@ -16,6 +17,7 @@ const methods = [
 const headers = {
   'user-agent': `@ianwalter/requester/${version}`
 }
+const urlencoded = 'application/x-www-form-urlencoded'
 const defaults = {
   shouldThrow: true,
   logLevel: 'info',
@@ -80,10 +82,12 @@ class Requester {
       // rawBody and the stringified version of it to body on the response.
       const contentType = response.headers && response.headers['content-type']
       const isJson = contentType && contentType.includes('application/json')
+      const isUrlEncoded = contentType && contentType.includes(urlencoded)
       if (
         !contentType ||
         (contentType && contentType.includes('text/')) ||
-        isJson
+        isJson ||
+        isUrlEncoded
       ) {
         response.rawBody = response.body
         response.body = response.body.toString()
@@ -98,6 +102,8 @@ class Requester {
         } catch (err) {
           this.print.error(err)
         }
+      } else if (isUrlEncoded) {
+        response.body = querystring.parse(response.body)
       }
     }
   }

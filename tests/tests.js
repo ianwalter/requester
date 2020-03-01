@@ -1,3 +1,4 @@
+const querystring = require('querystring')
 const { test } = require('@ianwalter/bff')
 const { createApp } = require('@ianwalter/nrg')
 const { requester, Requester } = require('..')
@@ -57,6 +58,24 @@ test('POST request with JSON', async ({ expect }) => {
     const response = await requester.post(server.url, { body })
     expect(response.ok).toBe(true)
     expect(response.statusCode).toBe(201)
+    expect(response.body).toEqual(body)
+  } finally {
+    await server.close()
+  }
+})
+
+test('POST request for form data', async ({ expect }) => {
+  const body = { artist: 'Peter Bjorn and John', song: 'Music' }
+  const app = createApp({ log: false })
+  app.use(ctx => {
+    ctx.set('content-type', 'application/x-www-form-urlencoded')
+    ctx.body = querystring.stringify(body)
+  })
+  const { server } = await app.start()
+  try {
+    const response = await requester.post(server.url)
+    expect(response.ok).toBe(true)
+    expect(response.statusCode).toBe(200)
     expect(response.body).toEqual(body)
   } finally {
     await server.close()
