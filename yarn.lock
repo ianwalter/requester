@@ -438,7 +438,7 @@
     marked-terminal "^4.1.0"
     strip-ansi "^6.0.0"
 
-"@ianwalter/print@^8.0.1":
+"@ianwalter/print@^8.0.1", "@ianwalter/print@^8.0.3":
   version "8.0.3"
   resolved "https://registry.yarnpkg.com/@ianwalter/print/-/print-8.0.3.tgz#28f520eabff2068f93aeace20ca56e07595946d1"
   integrity sha512-wq6DdjY3N760nf4mJioub45ZLL+8G9UohSV+yUh69iZ0tHzvztWvBxWT3m8H1W41NEIIWWkpXl/jz8WV4n/Srg==
