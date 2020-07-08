@@ -195,6 +195,11 @@
   resolved "https://registry.yarnpkg.com/@ianwalter/dot/-/dot-0.0.1.tgz#c909d099c9b29140a940aa897281845ae6585542"
   integrity sha512-/+PRPXPdoNJkcJQHWiTOzjneRp9WrM5e8uHZOS6Hm0ghwijaeI6nO4In8FjLaxZAtkwJAuuLDvjD0jdbRcza6A==
 
+"@ianwalter/dot@^1.0.4":
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/@ianwalter/dot/-/dot-1.0.4.tgz#32d9f98d59382475798c65bf686e95328327bfd3"
+  integrity sha512-bq6q4ZXWzQfBbE29i6trTwAtmmRzSWU0D/fSPhA/tDNbxhSlXDYUxfITtq1cctqi+s4BV4PgYIjxNkLeePK1mQ==
+
 "@ianwalter/eslint-config@^5.3.0":
   version "5.3.0"
   resolved "https://registry.yarnpkg.com/@ianwalter/eslint-config/-/eslint-config-5.3.0.tgz#47525e745966f39c456a8637b4e787201412dd19"
@@ -417,6 +422,23 @@
     "@ianwalter/chromafi" "^1.0.1"
     "@ianwalter/clone" "^6.0.1"
     "@ianwalter/log" "^4.0.0"
+    "@ianwalter/merge" "^9.0.1"
+    chalk "^4.1.0"
+    has-ansi "^4.0.0"
+    has-emoji "^1.1.0"
+    marked "^1.1.0"
+    marked-terminal "^4.1.0"
+    strip-ansi "^6.0.0"
+
+"@ianwalter/print@^8.0.3":
+  version "8.0.3"
+  resolved "https://registry.yarnpkg.com/@ianwalter/print/-/print-8.0.3.tgz#28f520eabff2068f93aeace20ca56e07595946d1"
+  integrity sha512-wq6DdjY3N760nf4mJioub45ZLL+8G9UohSV+yUh69iZ0tHzvztWvBxWT3m8H1W41NEIIWWkpXl/jz8WV4n/Srg==
+  dependencies:
+    "@ianwalter/chromafi" "^1.0.1"
+    "@ianwalter/cli" "^4.1.0"
+    "@ianwalter/clone" "^6.0.1"
+    "@ianwalter/dot" "^1.0.4"
     "@ianwalter/merge" "^9.0.1"
     chalk "^4.1.0"
     has-ansi "^4.0.0"
