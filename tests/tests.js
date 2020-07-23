@@ -127,6 +127,20 @@ test('HTTPS request', async ({ expect }) => {
   expect(response.body).toEqual(body)
 })
 
+test('Get request options from response', async t => {
+  const app = createApp({ log: false })
+  app.use(ctx => (ctx.status = 204))
+  const { server } = await app.start()
+  const headers = { 'x-test': 123 }
+  try {
+    const { statusCode, request } = await requester.get(server.url, { headers })
+    t.expect(statusCode).toBe(204)
+    t.expect(request.options.headers['x-test']).toEqual(headers['x-test'])
+  } finally {
+    await server.close()
+  }
+})
+
 // TODO:
 // test('GET gzipped response', async ({ expect }) => {
 //   const largeJsonBody = require('./largeJsonBody.json')

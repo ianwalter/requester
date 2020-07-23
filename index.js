@@ -159,6 +159,10 @@ class Requester {
           // Shape the response based on the received response headers.
           this.shapeResponse(response)
 
+          // Add a request object to the repsonse that has the requested URL
+          // and options.
+          response.request = { url, options }
+
           if (options.shouldThrow && !response.ok) {
             reject(new HttpError(response))
           } else {
