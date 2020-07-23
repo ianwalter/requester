@@ -26,6 +26,9 @@
     "url": "https://github.com/ianwalter/requester/issues"
   },
   "homepage": "https://github.com/ianwalter/requester#readme",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@ianwalter/base-error": "^6.1.0",
     "@ianwalter/clone": "^6.0.1",
