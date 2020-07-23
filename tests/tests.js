@@ -48,7 +48,7 @@ test('GET request for JSON', async ({ expect }) => {
 
 test('POST request with JSON', async ({ expect }) => {
   const app = createApp({ log: false })
-  const body = { chef: 'Sanchez' }
+  const body = { chef: 'Sanchez', born: new Date() }
   app.use(ctx => {
     ctx.status = ctx.request.body.chef === body.chef ? 201 : 400
     ctx.body = ctx.request.body
@@ -58,7 +58,7 @@ test('POST request with JSON', async ({ expect }) => {
     const response = await requester.post(server.url, { body })
     expect(response.ok).toBe(true)
     expect(response.statusCode).toBe(201)
-    expect(response.body).toEqual(body)
+    expect(response.body).toEqual({ ...body, born: body.born.toISOString() })
   } finally {
     await server.close()
   }
