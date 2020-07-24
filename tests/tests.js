@@ -6,7 +6,7 @@ const { requester, Requester } = require('..')
 test('GET request for empty response', async ({ expect }) => {
   const app = createApp({ log: false })
   app.use(ctx => (ctx.status = 204))
-  const { server } = await app.start()
+  const server = await app.serve()
   try {
     const response = await requester.get(server.url)
     expect(response.ok).toBe(true)
@@ -20,7 +20,7 @@ test('GET request for empty response', async ({ expect }) => {
 test('GET request for text', async ({ expect }) => {
   const app = createApp({ log: false })
   app.use(ctx => (ctx.body = 'test'))
-  const { server } = await app.start()
+  const server = await app.serve()
   try {
     const response = await requester.get(server.url)
     expect(response.ok).toBe(true)
@@ -35,7 +35,7 @@ test('GET request for JSON', async ({ expect }) => {
   const app = createApp({ log: false })
   const body = { message: 'test' }
   app.use(ctx => (ctx.body = body))
-  const { server } = await app.start()
+  const server = await app.serve()
   try {
     const response = await requester.get(server.url)
     expect(response.ok).toBe(true)
@@ -53,7 +53,7 @@ test('POST request with JSON', async ({ expect }) => {
     ctx.status = ctx.request.body.chef === body.chef ? 201 : 400
     ctx.body = ctx.request.body
   })
-  const { server } = await app.start()
+  const server = await app.serve()
   try {
     const response = await requester.post(server.url, { body })
     expect(response.ok).toBe(true)
@@ -71,7 +71,7 @@ test('POST request for form data', async ({ expect }) => {
     ctx.set('content-type', 'application/x-www-form-urlencoded')
     ctx.body = querystring.stringify(body)
   })
-  const { server } = await app.start()
+  const server = await app.serve()
   try {
     const response = await requester.post(server.url)
     expect(response.ok).toBe(true)
@@ -85,7 +85,7 @@ test('POST request for form data', async ({ expect }) => {
 test('Unauthorized GET request', async ({ expect }) => {
   const app = createApp({ log: false })
   app.use(ctx => (ctx.status = 401))
-  const { server } = await app.start()
+  const server = await app.serve()
   try {
     await requester.get(server.url)
   } catch (err) {
@@ -105,7 +105,7 @@ test('Bad Request with shouldThrow = false', async ({ expect }) => {
     ctx.status = 400
     ctx.body = body
   })
-  const { server } = await app.start()
+  const server = await app.serve()
   try {
     const response = await requester.get(server.url)
     expect(response.ok).toBe(false)
@@ -130,7 +130,7 @@ test('HTTPS request', async ({ expect }) => {
 test('Get request options from response', async t => {
   const app = createApp({ log: false })
   app.use(ctx => (ctx.status = 204))
-  const { server } = await app.start()
+  const server = await app.serve()
   const headers = { 'x-test': 123 }
   try {
     const { statusCode, request } = await requester.get(server.url, { headers })
