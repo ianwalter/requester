@@ -30,6 +30,9 @@ class HttpError extends BaseError {
   constructor (response) {
     super(response.statusText || 'Request failed')
     this.response = response
+
+    // Remove rawBody so that it doesn't get printed and flood the console.
+    delete this.response.body.rawBody
   }
 }
 
