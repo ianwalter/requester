@@ -7,7 +7,7 @@ devDependencies:
   '@changesets/cli': 2.10.1
   '@ianwalter/bff': 9.10.0
   '@ianwalter/eslint-config': 5.3.0
-  '@ianwalter/nrg': 0.8.3_@ianwalter+nrg@0.8.3
+  '@ianwalter/nrg': 0.8.4_@ianwalter+nrg@0.8.4
   '@ianwalter/renovate-config': 1.4.0
 lockfileVersion: 5.1
 packages:
@@ -227,7 +227,7 @@ packages:
   /@generates/cli/0.0.6:
     dependencies:
       '@generates/logger': 0.0.6
-      '@ianwalter/dot': 1.0.4
+      '@ianwalter/dot': 1.0.5
       '@ianwalter/merge': 9.0.1
       camelcase: 6.0.0
       common-tags: 1.8.0
@@ -241,7 +241,7 @@ packages:
     dependencies:
       '@generates/logger': 0.0.7
       '@generates/merger': 0.0.1
-      '@ianwalter/dot': 1.0.4
+      '@ianwalter/dot': 1.0.5
       camelcase: 6.0.0
       common-tags: 1.8.0
       decamelize: 4.0.0
@@ -256,7 +256,7 @@ packages:
       '@ianwalter/chromafi': 1.0.1
       '@ianwalter/clone': 6.0.1
       '@ianwalter/cloneable': 2.0.0
-      '@ianwalter/dot': 1.0.4
+      '@ianwalter/dot': 1.0.5
       '@ianwalter/merge': 9.0.1
       chalk: 4.1.0
       has-ansi: 4.0.0
@@ -275,7 +275,7 @@ packages:
       '@ianwalter/chromafi': 1.0.1
       '@ianwalter/clone': 6.0.1
       '@ianwalter/cloneable': 2.0.0
-      '@ianwalter/dot': 1.0.4
+      '@ianwalter/dot': 1.0.5
       chalk: 4.1.0
       has-ansi: 4.0.0
       has-emoji: 1.1.0
@@ -401,6 +401,10 @@ packages:
   /@ianwalter/dot/1.0.4:
     resolution:
       integrity: sha512-bq6q4ZXWzQfBbE29i6trTwAtmmRzSWU0D/fSPhA/tDNbxhSlXDYUxfITtq1cctqi+s4BV4PgYIjxNkLeePK1mQ==
+  /@ianwalter/dot/1.0.5:
+    dev: true
+    resolution:
+      integrity: sha512-xOtXmoeKrLudrNF5noqJPXJkMtm33A/Hhy/UPV0z5pWCtPa8pN1b5NFgrsFZsA/UsUN47MKWjLazPuZIO77ljw==
   /@ianwalter/eslint-config/5.3.0:
     dependencies:
       eslint: 7.5.0
@@ -415,7 +419,7 @@ packages:
       integrity: sha512-V+/57fQPgaJNRFxAF+fjU/ODU4lUGgwNrzZB/jiBv3JNZT2ZDdPWG0utdCpOrxY5ODcr9CKM42/vKv8JfdQj3g==
   /@ianwalter/extract/1.0.1:
     dependencies:
-      '@ianwalter/dot': 1.0.4
+      '@ianwalter/dot': 1.0.5
     dev: true
     resolution:
       integrity: sha512-QlhQTeFzmvab6soS9uivNNn7P/hgFDWqJOsjW8KzHw+YYQuBjd8uHPr3N8j6Ogk31cQ955MBCZ6dLYKlE3bbfw==
@@ -447,18 +451,18 @@ packages:
     dev: true
     resolution:
       integrity: sha512-MG5vxzVlNr/DU8xPwEx6Iuy4/QOMbihH3A89DabRrou2RZdKh+6JyUYkOuCF84O40O7+6q6N6P513dz+9YP23Q==
-  /@ianwalter/nrg-router/1.0.0_@ianwalter+nrg@0.8.3:
+  /@ianwalter/nrg-router/1.0.0_@ianwalter+nrg@0.8.4:
     dependencies:
-      '@ianwalter/nrg': 0.8.3_@ianwalter+nrg@0.8.3
+      '@ianwalter/nrg': 0.8.4_@ianwalter+nrg@0.8.4
       '@ianwalter/router': 3.3.0
     dev: true
     peerDependencies:
       '@ianwalter/nrg': ^0.3.0
     resolution:
       integrity: sha512-frLEWVOb+3GAS3Yee+6A4QPm5sQ1TzSBPqMOI3xGYpiJ6n3Hhb4a5K01fzOoq3QWGy2eo74kh4SojgzzTeZYIg==
-  /@ianwalter/nrg-session/7.0.0_@ianwalter+nrg@0.8.3:
+  /@ianwalter/nrg-session/7.0.0_@ianwalter+nrg@0.8.4:
     dependencies:
-      '@ianwalter/nrg': 0.8.3_@ianwalter+nrg@0.8.3
+      '@ianwalter/nrg': 0.8.4_@ianwalter+nrg@0.8.4
       copy-to: 2.0.1
       crc: 3.8.0
       debug: 4.1.1
@@ -475,19 +479,19 @@ packages:
     dev: true
     resolution:
       integrity: sha512-4yjP2cnJQodQ1U0qey39UJdzLEOK+HN4VkUUQxTePbgrq4aLSoq8amodpR0JlpNidK3nANdZlwL9L9xowowi/g==
-  /@ianwalter/nrg/0.8.3_@ianwalter+nrg@0.8.3:
+  /@ianwalter/nrg/0.8.4_@ianwalter+nrg@0.8.4:
     dependencies:
       '@generates/cli': 0.0.7
       '@generates/logger': 0.0.7
       '@generates/merger': 0.0.1
       '@ianwalter/cloneable': 2.0.0
       '@ianwalter/correct': 1.1.0
-      '@ianwalter/dot': 1.0.4
+      '@ianwalter/dot': 1.0.5
       '@ianwalter/extract': 1.0.1
       '@ianwalter/nrg-logger': 0.0.5
       '@ianwalter/nrg-mq': 1.1.0
-      '@ianwalter/nrg-router': 1.0.0_@ianwalter+nrg@0.8.3
-      '@ianwalter/nrg-session': 7.0.0_@ianwalter+nrg@0.8.3
+      '@ianwalter/nrg-router': 1.0.0_@ianwalter+nrg@0.8.4
+      '@ianwalter/nrg-session': 7.0.0_@ianwalter+nrg@0.8.4
       '@ianwalter/nrg-test': 1.1.2
       '@ianwalter/requester': 2.4.2
       '@ianwalter/url': 2.0.0
@@ -498,7 +502,7 @@ packages:
       dotenv: 8.2.0
       ejs: 3.1.3
       grant: 5.3.0
-      knex: 0.21.4_pg@8.3.0
+      knex: 0.21.4_pg@8.3.2
       koa: 2.13.0
       koa-bodyparser: 4.3.0
       koa-compress: 5.0.1
@@ -511,7 +515,7 @@ packages:
       nanoid: 3.1.12
       nodemailer: 6.4.11
       objection: 2.2.2_knex@0.21.4
-      pg: 8.3.0_pg@8.3.0
+      pg: 8.3.2_pg@8.3.2
       pkg-dir: 4.2.0
       rate-limiter-flexible: 2.1.10
       read-pkg-up: 7.0.1
@@ -523,7 +527,7 @@ packages:
     peerDependencies:
       '@ianwalter/nrg': '*'
     resolution:
-      integrity: sha512-diXb6udOkjFSO41+0fr9woXeW8V9j9Z8XHAtBaLsvnuejwU6qw1NZ1TmBe82Uqys9cuhlak8LjpH7f37EHOSlw==
+      integrity: sha512-VuXzDivzDaoM5nvNyn6pmJrCWVRmPjzmNkth2LLzkHpiWxhZCdGpd9q+5BA1p/N4zt6ApqebsdpZeMbxSxf6/A==
   /@ianwalter/print/5.3.0:
     dependencies:
       '@ianwalter/chromafi': 1.0.1
@@ -4415,7 +4419,7 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==
-  /knex/0.21.4_pg@8.3.0:
+  /knex/0.21.4_pg@8.3.2:
     dependencies:
       colorette: 1.2.1
       commander: 5.1.0
@@ -4427,7 +4431,7 @@ packages:
       liftoff: 3.1.0
       lodash: 4.17.19
       mkdirp: 1.0.4
-      pg: 8.3.0_pg@8.3.0
+      pg: 8.3.2_pg@8.3.2
       pg-connection-string: 2.3.0
       tarn: 3.0.0
       tildify: 2.0.0
@@ -5451,7 +5455,7 @@ packages:
     dependencies:
       ajv: 6.12.3
       db-errors: 0.2.3
-      knex: 0.21.4_pg@8.3.0
+      knex: 0.21.4_pg@8.3.2
     dev: true
     engines:
       node: '>=8.0.0'
@@ -5807,9 +5811,9 @@ packages:
       node: '>=4.0.0'
     resolution:
       integrity: sha512-WCtabS6t3c8SkpDBUlb1kjOs7l66xsGdKpIPZsg4wR+B3+u9UAum2odSsF9tnvxg80h4ZxLWMy4pRjOsFIqQpw==
-  /pg-pool/3.2.1_pg@8.3.0:
+  /pg-pool/3.2.1_pg@8.3.2:
     dependencies:
-      pg: 8.3.0_pg@8.3.0
+      pg: 8.3.2_pg@8.3.2
     dev: true
     peerDependencies:
       pg: '>=8.0'
@@ -5831,12 +5835,12 @@ packages:
       node: '>=4'
     resolution:
       integrity: sha512-qTAAlrEsl8s4OiEQY69wDvcMIdQN6wdz5ojQiOy6YRMuynxenON0O5oCpJI6lshc6scgAY8qvJ2On/p+CXY0GA==
-  /pg/8.3.0_pg@8.3.0:
+  /pg/8.3.2_pg@8.3.2:
     dependencies:
       buffer-writer: 2.0.0
       packet-reader: 1.0.0
       pg-connection-string: 2.3.0
-      pg-pool: 3.2.1_pg@8.3.0
+      pg-pool: 3.2.1_pg@8.3.2
       pg-protocol: 1.2.5
       pg-types: 2.2.0
       pgpass: 1.0.2
@@ -5847,7 +5851,7 @@ packages:
     peerDependencies:
       pg: '*'
     resolution:
-      integrity: sha512-jQPKWHWxbI09s/Z9aUvoTbvGgoj98AU7FDCcQ7kdejupn/TcNpx56v2gaOTzXkzOajmOEJEdi9eTh9cA2RVAjQ==
+      integrity: sha512-hOoRCTriXS+VWwyXHchRjWb9yv3Koq8irlwwXniqhdgK0AbfWvEnybGS2HIUE+UdCSTuYAM4WGPujFpPg9Vcaw==
   /pgpass/1.0.2:
     dependencies:
       split: 1.0.1
@@ -7809,6 +7813,6 @@ specifiers:
   '@ianwalter/clone': ^6.0.1
   '@ianwalter/eslint-config': ^5.3.0
   '@ianwalter/merge': ^9.0.1
-  '@ianwalter/nrg': ^0.8.3
+  '@ianwalter/nrg': ^0.8.4
   '@ianwalter/print': ^8.1.0
   '@ianwalter/renovate-config': ^1.4.0
