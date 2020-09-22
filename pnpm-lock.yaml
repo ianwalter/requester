@@ -7,7 +7,7 @@ devDependencies:
   '@changesets/cli': 2.10.3
   '@ianwalter/bff': 9.10.0
   '@ianwalter/eslint-config': 5.3.0
-  '@ianwalter/nrg': 0.11.0_@ianwalter+nrg@0.11.0
+  '@ianwalter/nrg': 0.11.1_@ianwalter+nrg@0.11.1
   '@ianwalter/renovate-config': 1.4.0
 lockfileVersion: 5.1
 packages:
@@ -428,14 +428,14 @@ packages:
   /@ianwalter/merge/9.0.1:
     resolution:
       integrity: sha512-Wu7eAZEsfuW0FJsVsdsNaWAtlY/6Viy74HQpZ8A81KutjhNO5cyPRkiBGletuX9kDUTOdSwWJokPnu/o4yE3KA==
-  /@ianwalter/nrg-logger/0.1.0:
+  /@ianwalter/nrg-logger/0.1.1:
     dependencies:
       '@generates/logger': 0.0.7
       '@ianwalter/cloneable': 2.0.0
       '@ianwalter/timer': 2.0.2
     dev: true
     resolution:
-      integrity: sha512-kO1EFOq+fjk3hMljmLnWGY2+yrCDXgwd9e4NNUV1qa85kgDskH3ls4IEg3SBjDtK+vEZXUl0DiCJxzzY+FQ1Hg==
+      integrity: sha512-fCK7o2x354kzFL+C1tozFL7dUNRVPFy+AZxvbB3KPg6SYK1nINIwItRNmNajn59EjIx1qanbFJRwNzMcAIEM8Q==
   /@ianwalter/nrg-mq/1.2.0:
     dependencies:
       amqp-connection-manager: 3.2.0_amqplib@0.6.0
@@ -443,18 +443,18 @@ packages:
     dev: true
     resolution:
       integrity: sha512-aciK+BFyVo+rt1ePbjRHoKhVV42jZpu8Ur+k71qXN1UkS1+YNnuG9roLa2zWQ+VGjgwqFaxyTGxd+qo6hCTzhw==
-  /@ianwalter/nrg-router/1.0.0_@ianwalter+nrg@0.11.0:
+  /@ianwalter/nrg-router/1.0.0_@ianwalter+nrg@0.11.1:
     dependencies:
-      '@ianwalter/nrg': 0.11.0_@ianwalter+nrg@0.11.0
+      '@ianwalter/nrg': 0.11.1_@ianwalter+nrg@0.11.1
       '@ianwalter/router': 3.3.0
     dev: true
     peerDependencies:
       '@ianwalter/nrg': ^0.3.0
     resolution:
       integrity: sha512-frLEWVOb+3GAS3Yee+6A4QPm5sQ1TzSBPqMOI3xGYpiJ6n3Hhb4a5K01fzOoq3QWGy2eo74kh4SojgzzTeZYIg==
-  /@ianwalter/nrg-session/7.0.0_@ianwalter+nrg@0.11.0:
+  /@ianwalter/nrg-session/7.0.0_@ianwalter+nrg@0.11.1:
     dependencies:
-      '@ianwalter/nrg': 0.11.0_@ianwalter+nrg@0.11.0
+      '@ianwalter/nrg': 0.11.1_@ianwalter+nrg@0.11.1
       copy-to: 2.0.1
       crc: 3.8.0
       debug: 4.1.1
@@ -471,7 +471,7 @@ packages:
     dev: true
     resolution:
       integrity: sha512-haTr+u5Joa9kZgIu1MCkPBX9bB1bKitZAhyqrSLB5fuJPwTtoh5JUwskII1jorJt6tusKNDEiFg17LvUxajspA==
-  /@ianwalter/nrg/0.11.0_@ianwalter+nrg@0.11.0:
+  /@ianwalter/nrg/0.11.1_@ianwalter+nrg@0.11.1:
     dependencies:
       '@generates/cli': 0.0.7
       '@generates/logger': 0.0.7
@@ -480,10 +480,10 @@ packages:
       '@ianwalter/correct': 1.1.0
       '@ianwalter/dot': 1.0.5
       '@ianwalter/extract': 1.0.1
-      '@ianwalter/nrg-logger': 0.1.0
+      '@ianwalter/nrg-logger': 0.1.1
       '@ianwalter/nrg-mq': 1.2.0
-      '@ianwalter/nrg-router': 1.0.0_@ianwalter+nrg@0.11.0
-      '@ianwalter/nrg-session': 7.0.0_@ianwalter+nrg@0.11.0
+      '@ianwalter/nrg-router': 1.0.0_@ianwalter+nrg@0.11.1
+      '@ianwalter/nrg-session': 7.0.0_@ianwalter+nrg@0.11.1
       '@ianwalter/nrg-test': 1.2.0
       '@ianwalter/requester': 2.4.2
       '@ianwalter/url': 2.0.0
@@ -519,7 +519,7 @@ packages:
     peerDependencies:
       '@ianwalter/nrg': '*'
     resolution:
-      integrity: sha512-uVPgnWXMTUcUKq6k5XOYOAhFtj4VbDhq9AO6YTmXw6pFwKsHMeMv8JRdl2BobgDkMTg+q0wuaOPHCgYMPCrGXw==
+      integrity: sha512-SeqVDEcHn0Dl1WNjI+tVKStB7ql3BQl5OBUIn6dxWPky6VRPo+43Rmug9jBP6eszqZ42N2UmnoMYG4bRs4RPcg==
   /@ianwalter/print/5.3.0:
     dependencies:
       '@ianwalter/chromafi': 1.0.1
@@ -7823,6 +7823,6 @@ specifiers:
   '@ianwalter/clone': ^6.0.1
   '@ianwalter/eslint-config': ^5.3.0
   '@ianwalter/merge': ^9.0.1
-  '@ianwalter/nrg': ^0.11.0
+  '@ianwalter/nrg': ^0.11.1
   '@ianwalter/print': ^8.1.0
   '@ianwalter/renovate-config': ^1.4.0
