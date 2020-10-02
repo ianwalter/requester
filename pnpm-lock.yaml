@@ -7,7 +7,7 @@ devDependencies:
   '@changesets/cli': 2.10.3
   '@ianwalter/bff': 9.10.0
   '@ianwalter/eslint-config': 5.3.0
-  '@ianwalter/nrg': 0.11.6
+  '@ianwalter/nrg': 0.12.0
   '@ianwalter/renovate-config': 1.4.0
 lockfileVersion: 5.1
 packages:
@@ -443,12 +443,13 @@ packages:
     dev: true
     resolution:
       integrity: sha512-nufsSmTSzH5+w53YJP8tp/ZNXebuQW/kxaHNwZDQ/h27H74yRESfesVJUgf7rKiZ45SQy6fXfZDIFhZDBkdtFA==
-  /@ianwalter/nrg-router/1.0.1:
+  /@ianwalter/nrg-router/1.1.0:
     dependencies:
       '@ianwalter/router': 3.3.0
+      koa-csrf: 3.0.8
     dev: true
     resolution:
-      integrity: sha512-pSl1alO8WuiNO9xKc0ILEpsj7TTBSpuP7CPZuuv8cdKUyaIskS2fcgO39xtS5CQM7E6syPnmKYUtFgU7+3v27w==
+      integrity: sha512-ik8zVlLp872Qi40fIR31voapoR8pEpfQVlvAlvBGobozQXm7brnPFjgKNYIkop1m6kwavXwCpZaC8KwHKPJh8w==
   /@ianwalter/nrg-session/7.0.1:
     dependencies:
       copy-to: 2.0.1
@@ -465,7 +466,7 @@ packages:
     dev: true
     resolution:
       integrity: sha512-wtPNI8H6nAzXaeeK4uQ8BJbZoJzv8qlGGoCUJ+tfZHXsb25Z4XBBm96NZZwzZYdSBGe63kvknmA6nWKVhdUp2g==
-  /@ianwalter/nrg/0.11.6:
+  /@ianwalter/nrg/0.12.0:
     dependencies:
       '@generates/cli': 0.0.7
       '@generates/logger': 0.0.7
@@ -476,7 +477,7 @@ packages:
       '@ianwalter/extract': 1.0.1
       '@ianwalter/nrg-logger': 0.1.4
       '@ianwalter/nrg-mq': 1.2.1
-      '@ianwalter/nrg-router': 1.0.1
+      '@ianwalter/nrg-router': 1.1.0
       '@ianwalter/nrg-session': 7.0.1
       '@ianwalter/nrg-test': 1.2.1
       '@ianwalter/requester': 2.4.2
@@ -492,7 +493,6 @@ packages:
       koa: 2.13.0
       koa-bodyparser: 4.3.0
       koa-compress: 5.0.1
-      koa-csrf: 3.0.8
       koa-json: 2.0.2
       koa-redis: 4.0.1
       koa-send: 5.0.1
@@ -511,7 +511,7 @@ packages:
     dev: true
     hasBin: true
     resolution:
-      integrity: sha512-UvWLiQP1kO5bjPYqeLq5iBPgM1jyrZTrjro4VQjNK0Xuh+fsvywyb0wQYkNU8iQf8mVKw2Y0dUs1oOSimcHIjg==
+      integrity: sha512-ZjLh04SAOv7puZPQsCwaZF57V35JgN6E1Qcn/jixmSFkVZGpVVszQc2yU00bUQis16r68m6jbqA6Vn3RNksRSw==
   /@ianwalter/print/5.3.0:
     dependencies:
       '@ianwalter/chromafi': 1.0.1
@@ -7815,6 +7815,6 @@ specifiers:
   '@ianwalter/clone': ^6.0.1
   '@ianwalter/eslint-config': ^5.3.0
   '@ianwalter/merge': ^9.0.1
-  '@ianwalter/nrg': ^0.11.6
+  '@ianwalter/nrg': ^0.12.0
   '@ianwalter/print': ^8.1.0
   '@ianwalter/renovate-config': ^1.4.0
