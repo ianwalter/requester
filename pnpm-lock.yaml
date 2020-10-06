@@ -7,7 +7,7 @@ devDependencies:
   '@changesets/cli': 2.10.3
   '@ianwalter/bff': 9.10.0
   '@ianwalter/eslint-config': 5.3.0
-  '@ianwalter/nrg': 0.12.3
+  '@ianwalter/nrg': 0.12.4
   '@ianwalter/renovate-config': 1.4.0
 lockfileVersion: 5.1
 packages:
@@ -466,7 +466,7 @@ packages:
     dev: true
     resolution:
       integrity: sha512-wtPNI8H6nAzXaeeK4uQ8BJbZoJzv8qlGGoCUJ+tfZHXsb25Z4XBBm96NZZwzZYdSBGe63kvknmA6nWKVhdUp2g==
-  /@ianwalter/nrg/0.12.3:
+  /@ianwalter/nrg/0.12.4:
     dependencies:
       '@generates/cli': 0.0.7
       '@generates/logger': 0.0.7
@@ -489,7 +489,7 @@ packages:
       dotenv: 8.2.0
       ejs: 3.1.3
       grant: 5.3.0
-      knex: 0.21.6_pg@8.3.3
+      knex: 0.21.6_pg@8.4.0
       koa: 2.13.0
       koa-bodyparser: 4.3.0
       koa-compress: 5.0.1
@@ -501,7 +501,7 @@ packages:
       nanoid: 3.1.12
       nodemailer: 6.4.11
       objection: 2.2.3_knex@0.21.6
-      pg: 8.3.3_pg@8.3.3
+      pg: 8.4.0_pg@8.4.0
       pkg-dir: 4.2.0
       rate-limiter-flexible: 2.1.10
       read-pkg-up: 7.0.1
@@ -511,7 +511,7 @@ packages:
     dev: true
     hasBin: true
     resolution:
-      integrity: sha512-PV3NymiFoERIgTZ2ZYzPsf2oTQfpfwhdhpn13qY5eshgPSj8TN+FrrA4eixkBEDOQJnLjXHIGnyX/EJLSvMzYg==
+      integrity: sha512-gee2PVBhVsFNiEWooHSklpijkERH2AY6frDGCQSG8KhGTXDXVFI/VAPTVmIE3XzD301Q8TyI+HVOYdDk4o5mlQ==
   /@ianwalter/print/5.3.0:
     dependencies:
       '@ianwalter/chromafi': 1.0.1
@@ -4419,7 +4419,7 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==
-  /knex/0.21.6_pg@8.3.3:
+  /knex/0.21.6_pg@8.4.0:
     dependencies:
       colorette: 1.2.1
       commander: 5.1.0
@@ -4431,7 +4431,7 @@ packages:
       liftoff: 3.1.0
       lodash: 4.17.20
       mkdirp: 1.0.4
-      pg: 8.3.3_pg@8.3.3
+      pg: 8.4.0_pg@8.4.0
       pg-connection-string: 2.3.0
       tarn: 3.0.0
       tildify: 2.0.0
@@ -5457,7 +5457,7 @@ packages:
     dependencies:
       ajv: 6.12.3
       db-errors: 0.2.3
-      knex: 0.21.6_pg@8.3.3
+      knex: 0.21.6_pg@8.4.0
     dev: true
     engines:
       node: '>=8.0.0'
@@ -5807,24 +5807,28 @@ packages:
     dev: true
     resolution:
       integrity: sha512-ukMTJXLI7/hZIwTW7hGMZJ0Lj0S2XQBCJ4Shv4y1zgQ/vqVea+FLhzywvPj0ujSuofu+yA4MYHGZPTsgjBgJ+w==
+  /pg-connection-string/2.4.0:
+    dev: true
+    resolution:
+      integrity: sha512-3iBXuv7XKvxeMrIgym7njT+HlZkwZqqGX4Bu9cci8xHZNT+Um1gWKqCsAzcC0d95rcKMU5WBg6YRUcHyV0HZKQ==
   /pg-int8/1.0.1:
     dev: true
     engines:
       node: '>=4.0.0'
     resolution:
       integrity: sha512-WCtabS6t3c8SkpDBUlb1kjOs7l66xsGdKpIPZsg4wR+B3+u9UAum2odSsF9tnvxg80h4ZxLWMy4pRjOsFIqQpw==
-  /pg-pool/3.2.1_pg@8.3.3:
+  /pg-pool/3.2.1_pg@8.4.0:
     dependencies:
-      pg: 8.3.3_pg@8.3.3
+      pg: 8.4.0_pg@8.4.0
     dev: true
     peerDependencies:
       pg: '>=8.0'
     resolution:
       integrity: sha512-BQDPWUeKenVrMMDN9opfns/kZo4lxmSWhIqo+cSAF7+lfi9ZclQbr9vfnlNaPr8wYF3UYjm5X0yPAhbcgqNOdA==
-  /pg-protocol/1.2.5:
+  /pg-protocol/1.3.0:
     dev: true
     resolution:
-      integrity: sha512-1uYCckkuTfzz/FCefvavRywkowa6M5FohNMF5OjKrqo9PSR8gYc8poVmwwYQaBxhmQdBjhtP514eXy9/Us2xKg==
+      integrity: sha512-64/bYByMrhWULUaCd+6/72c9PMWhiVFs3EVxl9Ct6a3v/U8+rKgqP2w+kKg/BIGgMJyB+Bk/eNivT32Al+Jghw==
   /pg-types/2.2.0:
     dependencies:
       pg-int8: 1.0.1
@@ -5837,23 +5841,26 @@ packages:
       node: '>=4'
     resolution:
       integrity: sha512-qTAAlrEsl8s4OiEQY69wDvcMIdQN6wdz5ojQiOy6YRMuynxenON0O5oCpJI6lshc6scgAY8qvJ2On/p+CXY0GA==
-  /pg/8.3.3_pg@8.3.3:
+  /pg/8.4.0_pg@8.4.0:
     dependencies:
       buffer-writer: 2.0.0
       packet-reader: 1.0.0
-      pg-connection-string: 2.3.0
-      pg-pool: 3.2.1_pg@8.3.3
-      pg-protocol: 1.2.5
+      pg-connection-string: 2.4.0
+      pg-pool: 3.2.1_pg@8.4.0
+      pg-protocol: 1.3.0
       pg-types: 2.2.0
       pgpass: 1.0.2
-      semver: 4.3.2
     dev: true
     engines:
       node: '>= 8.0.0'
     peerDependencies:
       pg: '*'
+      pg-native: '>=2.0.0'
+    peerDependenciesMeta:
+      pg-native:
+        optional: true
     resolution:
-      integrity: sha512-wmUyoQM/Xzmo62wgOdQAn5tl7u+IA1ZYK7qbuppi+3E+Gj4hlUxVHjInulieWrd0SfHi/ADriTb5ILJ/lsJrSg==
+      integrity: sha512-01LcNrAf+mBI46c78mE86I5o5KkOM942lLiSBdiCfgHTR+oUNIjh1fKClWeoPNHJz2oXe/VUSqtk1vwAQYwWEg==
   /pgpass/1.0.2:
     dependencies:
       split: 1.0.1
@@ -6564,11 +6571,6 @@ packages:
       node: '>= 4'
     resolution:
       integrity: sha512-i27Mic4KovM/lnGsy8whRCHhc7VicJajAjTrYg11K9zfZXnYIt4k5F+kZkwjnrhKzLic/HLU4j11mjsz2G/75g==
-  /semver/4.3.2:
-    dev: true
-    hasBin: true
-    resolution:
-      integrity: sha1-x6BxWKgL7dBSNVt3DYLWZA+AO+c=
   /semver/5.7.1:
     hasBin: true
     resolution:
@@ -7815,6 +7817,6 @@ specifiers:
   '@ianwalter/clone': ^6.0.1
   '@ianwalter/eslint-config': ^5.3.0
   '@ianwalter/merge': ^9.0.1
-  '@ianwalter/nrg': ^0.12.3
+  '@ianwalter/nrg': ^0.12.4
   '@ianwalter/print': ^8.1.0
   '@ianwalter/renovate-config': ^1.4.0
