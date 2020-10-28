@@ -52,4 +52,4 @@ Created by [Ian Walter](https://ianwalter.dev)
 [npmUrl]: https://www.npmjs.com/package/@ianwalter/requester
 [ciImage]: https://github.com/ianwalter/requester/workflows/CI/badge.svg
 [ciUrl]: https://github.com/ianwalter/requester/actions
-[licenseUrl]: https://github.com/ianwalter/requester/blob/master/LICENSE
+[licenseUrl]: https://github.com/ianwalter/requester/blob/main/LICENSE
