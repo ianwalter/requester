@@ -3,7 +3,6 @@ const https = require('https')
 const { URL } = require('url')
 const zlib = require('zlib')
 const querystring = require('querystring')
-const BaseError = require('@ianwalter/base-error')
 const { createPrint } = require('@ianwalter/print')
 const { version } = require('./package.json')
 const merge = require('@ianwalter/merge')
@@ -26,13 +25,14 @@ const defaults = {
 }
 const print = createPrint({ level: 'info', namespace: 'requester' })
 
-class HttpError extends BaseError {
+class HttpError extends Error {
   constructor (response) {
-    super(response.statusText || 'Request failed')
+    super(response?.statusText || 'Request failed')
+    this.name = this.constructor.name
     this.response = response
 
     // Remove rawBody so that it doesn't get printed and flood the console.
-    delete this.response.body.rawBody
+    delete this.response?.body?.rawBody
   }
 }
 
