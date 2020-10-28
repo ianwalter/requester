@@ -1,5 +1,11 @@
 # @ianwalter/requester
 
+## 2.4.3
+
+### Patch Changes
+
+- 5367870: Fixing empty body issue in HttpError
+
 ## 2.4.1
 
 ### Patch Changes
