@@ -6,7 +6,7 @@ devDependencies:
   '@changesets/cli': 2.11.2
   '@ianwalter/bff': 9.12.1
   '@ianwalter/eslint-config': 5.4.0
-  '@ianwalter/nrg': 0.15.0
+  '@ianwalter/nrg': 0.15.1
   '@ianwalter/renovate-config': 1.4.2
 lockfileVersion: 5.2
 packages:
@@ -696,7 +696,7 @@ packages:
     dev: true
     resolution:
       integrity: sha512-MHZambnuputUtLieNE9JMRZtVbNNv3P24uyMcD8is0+bXuuLskEakOCU0Gf7s9YS+dBZT81tH9ptxH4WFLbl2Q==
-  /@ianwalter/nrg/0.15.0:
+  /@ianwalter/nrg/0.15.1:
     dependencies:
       '@generates/cli': 0.0.7
       '@generates/logger': 0.0.8
@@ -743,7 +743,7 @@ packages:
     dev: true
     hasBin: true
     resolution:
-      integrity: sha512-pFYUYQsOVBxNe4gdvhzuFfXufS8n+STJsicfAR/B94f7LYlVeMPhR68YYlxa+mIUweAuRbmhRMV6FQ3Bi1cIxw==
+      integrity: sha512-I/JfcqraSAwZ4yVx9wnwdQ0uo0Zk9ZM7F0zVfV+bYWnb9uv6v29VqM0aImtFO8OgEbdH0JdWDoxjHUbeoKjjeQ==
   /@ianwalter/print/5.3.0:
     dependencies:
       '@ianwalter/chromafi': 1.0.1
@@ -8230,6 +8230,6 @@ specifiers:
   '@ianwalter/clone': ^6.0.1
   '@ianwalter/eslint-config': ^5.4.0
   '@ianwalter/merge': ^9.0.1
-  '@ianwalter/nrg': ^0.15.0
+  '@ianwalter/nrg': ^0.15.1
   '@ianwalter/print': ^8.1.0
   '@ianwalter/renovate-config': ^1.4.2
