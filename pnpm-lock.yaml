@@ -3,7 +3,7 @@ dependencies:
   '@ianwalter/merge': 9.0.1
   '@ianwalter/print': 8.1.0
 devDependencies:
-  '@changesets/cli': 2.11.2
+  '@changesets/cli': 2.12.0
   '@ianwalter/bff': 9.12.1
   '@ianwalter/eslint-config': 5.4.0
   '@ianwalter/nrg': 0.15.1
@@ -216,7 +216,7 @@ packages:
     dev: true
     resolution:
       integrity: sha512-3Kv21FNvysTQvZs3fHr6aZeDibhZHtgI1++fMZplzVtwNVmpjow3zv9lcZmJP26LthbpVH3I8+nqlU7M43lfWA==
-  /@changesets/cli/2.11.2:
+  /@changesets/cli/2.12.0:
     dependencies:
       '@babel/runtime': 7.10.5
       '@changesets/apply-release-plan': 4.0.0
@@ -251,7 +251,7 @@ packages:
     dev: true
     hasBin: true
     resolution:
-      integrity: sha512-Lfw4MWj46H7dgPzgYmRJ8QbpDxi02dK+21zuWzBjVtsf3AqJgy7oVdXl4Yga/JhBq8eeoxBS9NoCVw8/JOZBcg==
+      integrity: sha512-dGdFkg75zsaEObsG8gwMLglS6sJVjXWwgVTAzEIjqIoWVnKwqZqccTb4gn0noq47uCwy7SqxiAJqGibIy9UOKw==
   /@changesets/config/1.4.0:
     dependencies:
       '@changesets/errors': 0.1.4
@@ -8225,7 +8225,7 @@ packages:
     resolution:
       integrity: sha1-KOwXzwl0PtyrBW3dixsGJizHPDA=
 specifiers:
-  '@changesets/cli': ^2.11.2
+  '@changesets/cli': ^2.12.0
   '@ianwalter/bff': ^9.12.1
   '@ianwalter/clone': ^6.0.1
   '@ianwalter/eslint-config': ^5.4.0
