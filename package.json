@@ -38,7 +38,7 @@
     "@changesets/cli": "^2.12.0",
     "@ianwalter/bff": "^9.12.3",
     "@ianwalter/eslint-config": "^6.1.0",
-    "@ianwalter/nrg": "^0.15.3",
+    "@ianwalter/nrg": "^0.15.4",
     "@ianwalter/renovate-config": "^1.4.2"
   },
   "eslintConfig": {
