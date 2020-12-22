@@ -6,7 +6,7 @@ devDependencies:
   '@changesets/cli': 2.12.0
   '@ianwalter/bff': 9.13.0
   '@ianwalter/eslint-config': 6.2.0
-  '@ianwalter/nrg': 0.15.4
+  '@ianwalter/nrg': 0.16.0
   '@ianwalter/renovate-config': 1.4.2
 lockfileVersion: 5.2
 packages:
@@ -26,7 +26,7 @@ packages:
       '@babel/traverse': 7.12.1
       '@babel/types': 7.12.1
       convert-source-map: 1.7.0
-      debug: 4.1.1
+      debug: 4.3.1
       gensync: 1.0.0-beta.1
       json5: 2.1.3
       lodash: 4.17.20
@@ -166,7 +166,7 @@ packages:
       '@babel/helper-split-export-declaration': 7.11.0
       '@babel/parser': 7.12.3
       '@babel/types': 7.12.1
-      debug: 4.1.1
+      debug: 4.3.1
       globals: 11.12.0
       lodash: 4.17.20
     dev: true
@@ -726,7 +726,7 @@ packages:
     dev: true
     resolution:
       integrity: sha512-MHZambnuputUtLieNE9JMRZtVbNNv3P24uyMcD8is0+bXuuLskEakOCU0Gf7s9YS+dBZT81tH9ptxH4WFLbl2Q==
-  /@ianwalter/nrg/0.15.4:
+  /@ianwalter/nrg/0.16.0:
     dependencies:
       '@generates/cli': 0.0.9
       '@generates/logger': 0.0.9
@@ -751,7 +751,7 @@ packages:
       dotenv: 8.2.0
       ejs: 3.1.3
       grant: 5.4.9
-      knex: 0.21.12_pg@8.5.1
+      knex: 0.21.14_pg@8.5.1
       koa: 2.13.0
       koa-bodyparser: 4.3.0
       koa-compress: 5.0.1
@@ -762,7 +762,7 @@ packages:
       mailgen: 2.0.13
       nanoid: 3.1.20
       nodemailer: 6.4.17
-      objection: 2.2.3_knex@0.21.12
+      objection: 2.2.3_knex@0.21.14
       pg: 8.5.1
       pkg-dir: 4.2.0
       rate-limiter-flexible: 2.1.10
@@ -773,7 +773,7 @@ packages:
     dev: true
     hasBin: true
     resolution:
-      integrity: sha512-Q8XjBVnnXk9CdzfcyMSKTR7vSmyYYYOwmhH1X0WamIn47RF7aWAUZ4blsUrfcSdt90TYDoDFbd84fGfYyLXvLA==
+      integrity: sha512-QsVYECBxOKsBmumaS4eIzmHAawzb/08/AP3tNSgp6500xTNZHs7eB2duj/Xt5ZtBzVEMcJ9ai6i1O1ZpmtwW/Q==
   /@ianwalter/print/5.3.0:
     dependencies:
       '@ianwalter/chromafi': 1.0.1
@@ -2153,12 +2153,12 @@ packages:
     dev: true
     resolution:
       integrity: sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==
-  /commander/5.1.0:
+  /commander/6.2.1:
     dev: true
     engines:
       node: '>= 6'
     resolution:
-      integrity: sha512-P0CysNDQ7rtVw4QIQtm+MRxV66vKFSvlsQvGYXZWR3qFU0jlMKHZZZgw8e+8DSah4UDKMqnknRDQz+xuQXQ/Zg==
+      integrity: sha512-U7VdrJFnJgo4xjrHpTzu0yrHPGImdsmD95ZlgYSEajAn2JKzDhDTPG9kBTefmObL2w/ngeZnilk+OV9CG3d7UA==
   /common-tags/1.8.0:
     engines:
       node: '>=4.0.0'
@@ -2477,6 +2477,19 @@ packages:
     dev: true
     resolution:
       integrity: sha512-pYAIzeRo8J6KPEaJ0VWOh5Pzkbw/RetuzehGM7QRRX5he4fPHx2rdKMB256ehJCkX+XRQm16eZLqLNS8RSZXZw==
+  /debug/4.3.1:
+    dependencies:
+      ms: 2.1.2
+    dev: true
+    engines:
+      node: '>=6.0'
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
+    resolution:
+      integrity: sha512-doEwdvm4PCeK4K3RQN2ZC2BYUBaxwLARCqZmMjtF8a51J2Rb0xpVloFRnCODwqjpwnAoao4pelN8l3RJdv3gRQ==
   /decamelize-keys/1.1.0:
     dependencies:
       decamelize: 1.2.0
@@ -3597,6 +3610,7 @@ packages:
     resolution:
       integrity: sha512-oWb1Z6mkHIskLzEJ/XWX0srkpkTQ7vaopMQkyaEIoq0fmtFVxOthb8cCxeT+p3ynTdkk/RZwbgG4brR5BeWECw==
   /fsevents/2.1.3:
+    deprecated: Please update to v 2.2.x
     dev: true
     engines:
       node: ^8.16.0 || ^10.6.0 || >=11.0.0
@@ -4133,7 +4147,7 @@ packages:
   /ioredis/4.17.3:
     dependencies:
       cluster-key-slot: 1.1.0
-      debug: 4.1.1
+      debug: 4.3.1
       denque: 1.4.1
       lodash.defaults: 4.2.0
       lodash.flatten: 4.4.0
@@ -4826,18 +4840,18 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==
-  /knex/0.21.12_pg@8.5.1:
+  /knex/0.21.14_pg@8.5.1:
     dependencies:
       colorette: 1.2.1
-      commander: 5.1.0
-      debug: 4.1.1
+      commander: 6.2.1
+      debug: 4.3.1
       esm: 3.2.25
       getopts: 2.2.5
       interpret: 2.2.0
       liftoff: 3.1.0
       lodash: 4.17.20
       pg: 8.5.1
-      pg-connection-string: 2.3.0
+      pg-connection-string: 2.4.0
       tarn: 3.0.1
       tildify: 2.0.0
       v8flags: 3.2.0
@@ -4863,7 +4877,7 @@ packages:
       sqlite3:
         optional: true
     resolution:
-      integrity: sha512-AEyyiTM9p/x/Pb38TPZkvphKPmn8UWxP7MdIphzjAOielOfFFeU6pjP6y3M7UJ7rxrQsCrAYHwdonLQ3l1JCDw==
+      integrity: sha512-UKoRtSzeSlm4Fi/jcFZ+NNmwYPnLADKy3u7Wm8WFhhFlv/I9RXf6TrTHNeE9hjIK1hCUz2yn4PeXagvjArTPUg==
   /koa-bodyparser/4.3.0:
     dependencies:
       co-body: 6.0.0
@@ -4919,7 +4933,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.10.5
       co-wrap-all: 1.0.0
-      debug: 4.1.1
+      debug: 4.3.1
       ioredis: 4.17.3
     dev: true
     engines:
@@ -4928,7 +4942,7 @@ packages:
       integrity: sha512-o2eTVNo1NBnloeUGhHed5Q2ZvJSLpUEj/+E1/7oH5EmH8WuQ+QLdl/VawkshxdFQ47W1p6V09lM3hCTu7D0YnQ==
   /koa-send/5.0.1:
     dependencies:
-      debug: 4.1.1
+      debug: 4.3.1
       http-errors: 1.8.0
       resolve-path: 1.4.0
     dev: true
@@ -5826,11 +5840,11 @@ packages:
       node: '>= 0.4'
     resolution:
       integrity: sha512-WTa54g2K8iu0kmS/us18jEmdv1a4Wi//BZ/DTVYEcH0XhLM5NYdpDHja3gt57VrZLcNAO2WGA+KpWsDBaHt6eA==
-  /objection/2.2.3_knex@0.21.12:
+  /objection/2.2.3_knex@0.21.14:
     dependencies:
       ajv: 6.12.5
       db-errors: 0.2.3
-      knex: 0.21.12_pg@8.5.1
+      knex: 0.21.14_pg@8.5.1
     dev: true
     engines:
       node: '>=8.0.0'
@@ -6183,10 +6197,6 @@ packages:
     dev: true
     resolution:
       integrity: sha1-Ywn04OX6kT7BxpMHrjZLSzd8nns=
-  /pg-connection-string/2.3.0:
-    dev: true
-    resolution:
-      integrity: sha512-ukMTJXLI7/hZIwTW7hGMZJ0Lj0S2XQBCJ4Shv4y1zgQ/vqVea+FLhzywvPj0ujSuofu+yA4MYHGZPTsgjBgJ+w==
   /pg-connection-string/2.4.0:
     dev: true
     resolution:
@@ -8263,6 +8273,6 @@ specifiers:
   '@ianwalter/clone': ^6.0.1
   '@ianwalter/eslint-config': ^6.2.0
   '@ianwalter/merge': ^9.0.1
-  '@ianwalter/nrg': ^0.15.4
+  '@ianwalter/nrg': ^0.16.0
   '@ianwalter/print': ^8.1.0
   '@ianwalter/renovate-config': ^1.4.2
