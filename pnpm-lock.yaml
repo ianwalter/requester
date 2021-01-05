@@ -6,7 +6,7 @@ devDependencies:
   '@changesets/cli': 2.12.0
   '@ianwalter/bff': 9.13.0
   '@ianwalter/eslint-config': 6.2.0
-  '@ianwalter/nrg': 0.16.1
+  '@ianwalter/nrg': 0.17.0
   '@ianwalter/renovate-config': 1.4.2
 lockfileVersion: 5.2
 packages:
@@ -499,10 +499,6 @@ packages:
     dev: true
     resolution:
       integrity: sha512-t1Mi5mtIwCbcKxqZ5v+7Ds570gwTfo5vAXr0Q3naaMxfnCc6CychGHh/GyF6nK3qYIxh9BJhThVTiCfN+ukMuQ==
-  /@ianwalter/base-error/6.1.0:
-    dev: true
-    resolution:
-      integrity: sha512-a1oe3gdY7aVJotysd2hbkARZdIXd80b1xL+kcJGQ/5VzEv7bMhQ+vlamv8DLz828uz/dxMCVb4++n75RyVUs2Q==
   /@ianwalter/bff/9.13.0:
     dependencies:
       '@generates/logger': 0.0.9
@@ -578,17 +574,6 @@ packages:
   /@ianwalter/cloneable/2.0.0:
     resolution:
       integrity: sha512-ZMKux34x/+EJIc6RCu01MmFXbW1rDSCCHvL9Bu81Hy/QGwvYu/lJACXWEbiCC/q7kDfVhA8LWNcLeMsp7G5a/A==
-  /@ianwalter/correct/1.2.1:
-    dependencies:
-      '@ianwalter/base-error': 6.1.0
-      date-fns: 2.16.1
-      decamelize: 4.0.0
-      is-phone: 2.0.0
-      isemail: 3.2.0
-      zxcvbn: 4.4.2
-    dev: true
-    resolution:
-      integrity: sha512-MJrLVtUft6ahk/tptLH/krhMwxT5tZJEm9qssPrZfhqMYXkhGs39Ik47u3SWrccC2LPCWu1jjTFCANTPoQ6biQ==
   /@ianwalter/dist/6.0.0:
     dependencies:
       '@babel/core': 7.12.3
@@ -703,13 +688,23 @@ packages:
     dev: true
     resolution:
       integrity: sha512-MHZambnuputUtLieNE9JMRZtVbNNv3P24uyMcD8is0+bXuuLskEakOCU0Gf7s9YS+dBZT81tH9ptxH4WFLbl2Q==
-  /@ianwalter/nrg/0.16.1:
+  /@ianwalter/nrg-validation/1.2.1:
+    dependencies:
+      '@generates/merger': 0.1.2
+      date-fns: 2.16.1
+      decamelize: 4.0.0
+      is-phone: 2.0.0
+      isemail: 3.2.0
+      zxcvbn: 4.4.2
+    dev: true
+    resolution:
+      integrity: sha512-fwGr1l9cX4x0x59JreXca/mkvD7/urTT9eZv6x8QHstDcqlAFbUF3OH88Y7l16cdOmplceiWn5/ZIi40hETRkw==
+  /@ianwalter/nrg/0.17.0:
     dependencies:
       '@generates/cli': 0.0.9
       '@generates/logger': 0.0.9
       '@generates/merger': 0.1.2
       '@ianwalter/cloneable': 2.0.0
-      '@ianwalter/correct': 1.2.1
       '@ianwalter/dist': 6.0.0
       '@ianwalter/dot': 1.0.5
       '@ianwalter/extract': 1.0.3
@@ -719,6 +714,7 @@ packages:
       '@ianwalter/nrg-router': 1.1.1
       '@ianwalter/nrg-session': 7.0.2
       '@ianwalter/nrg-test': 1.2.2
+      '@ianwalter/nrg-validation': 1.2.1
       '@ianwalter/requester': 2.4.3
       '@ianwalter/url': 2.0.0
       bcrypt: 5.0.0
@@ -729,7 +725,7 @@ packages:
       ejs: 3.1.3
       grant: 5.4.9
       knex: 0.21.15_pg@8.5.1
-      koa: 2.13.0
+      koa: 2.13.1
       koa-bodyparser: 4.3.0
       koa-compress: 5.0.1
       koa-json: 2.0.2
@@ -738,17 +734,17 @@ packages:
       mailgen: 2.0.13
       nanoid: 3.1.20
       nodemailer: 6.4.17
-      objection: 2.2.3_knex@0.21.15
+      objection: 2.2.4_knex@0.21.15
       pg: 8.5.1
       pkg-dir: 4.2.0
-      rate-limiter-flexible: 2.1.15
+      rate-limiter-flexible: 2.1.16
       read-pkg-up: 7.0.1
       replace-string: 3.1.0
       require-from-string: 2.0.2
     dev: true
     hasBin: true
     resolution:
-      integrity: sha512-xeJo1ID+MEar8ReX4KqLXuUX+3LGTqaPuPkXehUy7fbBg5Lj62sityU4AzMlgLAWvGtUELNZFsg1Q7b9C6D2Cw==
+      integrity: sha512-ZA6mo+fMDe75se4p3x4QETwWbYFNBdqYytbPzyfOQtLwoziPs6RhOKTrnEpyAuszENttJAlPepMwU95tAy6Eng==
   /@ianwalter/print/5.3.0:
     dependencies:
       '@ianwalter/chromafi': 1.0.1
@@ -1036,6 +1032,15 @@ packages:
     dev: true
     resolution:
       integrity: sha512-lRF8RORchjpKG50/WFf8xmg7sgCLFiYNNnqdKflk63whMQcWR5ngGjiSXkL9bjxy6B2npOK2HSMN49jEBMSkag==
+  /ajv/6.12.6:
+    dependencies:
+      fast-deep-equal: 3.1.3
+      fast-json-stable-stringify: 2.1.0
+      json-schema-traverse: 0.4.1
+      uri-js: 4.2.2
+    dev: true
+    resolution:
+      integrity: sha512-j3fVLgvTo527anyYyJOGTYJbG+vnnQYvE0m5mmkc1TK+nxAppkCLMIL0aZ4dblVCNoGShhm+kzE4ZUykBoMg4g==
   /amqp-connection-manager/3.2.1_amqplib@0.6.0:
     dependencies:
       amqplib: 0.6.0
@@ -2225,7 +2230,7 @@ packages:
       integrity: sha512-ox7bvGXt2n+uLWtCRLybYx60IrOlWL/aCebWJk1T0d4m3y2tzf4U3ij9wBMUb6YJZpz06HCCYuyCDveE2xXmzQ==
   /dom-serializer/1.2.0:
     dependencies:
-      domelementtype: 2.0.1
+      domelementtype: 2.1.0
       domhandler: 4.0.0
       entities: 2.1.0
     resolution:
@@ -2235,6 +2240,7 @@ packages:
     resolution:
       integrity: sha512-BSKB+TSpMpFI/HOxCNr1O8aMOTZ8hT3pM3GQ0w/mWRmkhEDSFJkkyzz4XQsBV44BChwGkrDfMyjVD0eA2aFV3w==
   /domelementtype/2.0.1:
+    dev: true
     resolution:
       integrity: sha512-5HOHUDsYZWV8FGWN0Njbr/Rn7f/eWSQi1v7+HsUVwXgn8nWWlL64zKDkS0n8ZmQ3mlWOMuXOnR+7Nx/5tMO5AQ==
   /domelementtype/2.1.0:
@@ -3198,7 +3204,7 @@ packages:
       integrity: sha1-qUwiJOvKwEeCoNkDVSHyRzW37JI=
   /har-validator/5.1.3:
     dependencies:
-      ajv: 6.12.5
+      ajv: 6.12.6
       har-schema: 2.0.0
     deprecated: this library is no longer supported
     dev: true
@@ -3368,7 +3374,7 @@ packages:
       integrity: sha512-vKZZra6CSe9qsJzh0BjBGXo8dvzNsq/oGvsjfRdOrrryfeD9UOBEEQdeoqCRmKZchF5h2zOBMQ6YuQ0uRUmdbQ==
   /htmlparser2/6.0.0:
     dependencies:
-      domelementtype: 2.0.1
+      domelementtype: 2.1.0
       domhandler: 4.0.0
       domutils: 2.4.4
       entities: 2.1.0
@@ -4280,7 +4286,7 @@ packages:
       node: '>= 8'
     resolution:
       integrity: sha512-tmcyQ/wXXuxpDxyNXv5yNNkdAMdFRqwtegBXUaowiQzUKqJehttS0x2j0eOZDQAyloAth5w6wwBImnFzkUz3pQ==
-  /koa/2.13.0:
+  /koa/2.13.1:
     dependencies:
       accepts: 1.3.7
       cache-content-type: 1.0.1
@@ -4289,7 +4295,7 @@ packages:
       cookies: 0.8.0
       debug: 3.1.0
       delegates: 1.0.0
-      depd: 1.1.2
+      depd: 2.0.0
       destroy: 1.0.4
       encodeurl: 1.0.2
       escape-html: 1.0.3
@@ -4309,7 +4315,7 @@ packages:
     engines:
       node: ^4.8.4 || ^6.10.1 || ^7.10.1 || >= 8.1.4
     resolution:
-      integrity: sha512-i/XJVOfPw7npbMv67+bOeXr3gPqOAw6uh5wFyNs3QvJ47tUx3M3V9rIE0//WytY42MKz4l/MXKyGkQ2LQTfLUQ==
+      integrity: sha512-Lb2Dloc72auj5vK4X4qqL7B5jyDPQaZucc9sR/71byg7ryoD1NCaCm63CShk9ID9quQvDEi1bGR/iGjCG7As3w==
   /levn/0.4.1:
     dependencies:
       prelude-ls: 1.2.1
@@ -4982,9 +4988,9 @@ packages:
       node: '>= 0.4'
     resolution:
       integrity: sha512-WTa54g2K8iu0kmS/us18jEmdv1a4Wi//BZ/DTVYEcH0XhLM5NYdpDHja3gt57VrZLcNAO2WGA+KpWsDBaHt6eA==
-  /objection/2.2.3_knex@0.21.15:
+  /objection/2.2.4_knex@0.21.15:
     dependencies:
-      ajv: 6.12.5
+      ajv: 6.12.6
       db-errors: 0.2.3
       knex: 0.21.15_pg@8.5.1
     dev: true
@@ -4993,7 +4999,7 @@ packages:
     peerDependencies:
       knex: 0.x
     resolution:
-      integrity: sha512-uNya9GuHlNeix7H0URthVE3+CmAlXmxkU69LAcRnncLjujJ8l1YX8JCB2GVSErTYS3Oc2xneF1ZWaR/MS8r63g==
+      integrity: sha512-yY/Pf6gLWVnTrkhYMZ4qjuk4ztJ8NHizfC1S/cp89oSevd9hDS2GqCYKQMHJRnY+Wu+qFtqMMFgWV3qRQrX0iA==
   /on-finished/2.3.0:
     dependencies:
       ee-first: 1.1.1
@@ -5539,10 +5545,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-vYl3iOX+4CKUWuxGi9Ukhie6fsqXqS9FE2Zaic4tNFD2N2QQaXOMFbuKK4QmDHC0JO6B1Zp41J0LpT0oR68amQ==
-  /rate-limiter-flexible/2.1.15:
+  /rate-limiter-flexible/2.1.16:
     dev: true
     resolution:
-      integrity: sha512-vIU5X20id7objPJ4lQh05Pd9C4qZ4i/K2xY07kHJ0suzsOjBGv43VozrbqRRCJ5TpmRXcGP/yNlwgehzL80wvQ==
+      integrity: sha512-ag2ZQLS0g7+QrMpmMQf37EJ/9drSOsrslQXnOJ3OpqIgUwdjQpChu8CLNz4GWOr9sJq+RGVYDwAcJjYK8hHCqA==
   /raw-body/2.4.1:
     dependencies:
       bytes: 3.1.0
@@ -6953,6 +6959,6 @@ specifiers:
   '@ianwalter/clone': ^6.0.1
   '@ianwalter/eslint-config': ^6.2.0
   '@ianwalter/merge': ^9.0.1
-  '@ianwalter/nrg': ^0.16.1
+  '@ianwalter/nrg': ^0.17.0
   '@ianwalter/print': ^8.1.0
   '@ianwalter/renovate-config': ^1.4.2
