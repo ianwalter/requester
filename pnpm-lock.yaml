@@ -7,7 +7,7 @@ devDependencies:
   '@ianwalter/bff': 9.13.0
   '@ianwalter/eslint-config': 6.2.0
   '@ianwalter/nrg': 0.18.0
-  '@ianwalter/renovate-config': 1.4.2
+  '@ianwalter/renovate-config': 1.4.3
 lockfileVersion: 5.2
 packages:
   /@babel/code-frame/7.10.4:
@@ -732,10 +732,10 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-1C3oH2YYpfPsRELDK2GDLEyzUNqBu4RMFrkbL+IFG5QrigAKX0wC64gjcmXkgGI9wGUEQ0R3vjnR/yMzC+Yymw==
-  /@ianwalter/renovate-config/1.4.2:
+  /@ianwalter/renovate-config/1.4.3:
     dev: true
     resolution:
-      integrity: sha512-zsqqCE28FwCvBbXmDQgCwnGa5R1HEiNaMZD4QUwdVuycMT1xtv1TDAj4YiP878M4jgiU83iY1BdUXtjkpxu/Tw==
+      integrity: sha512-61InLaz89GLb3iTcRSL2Z+WtYnEIfzWJ7gy+R8ascdsRpARU8qwkBqmq6euw8OPxfHNbqtqEAiG1ljckFjVwsQ==
   /@ianwalter/requester/2.4.3:
     dependencies:
       '@ianwalter/clone': 6.0.1
@@ -6917,4 +6917,4 @@ specifiers:
   '@ianwalter/merge': ^9.0.1
   '@ianwalter/nrg': ^0.18.0
   '@ianwalter/print': ^8.1.0
-  '@ianwalter/renovate-config': ^1.4.2
+  '@ianwalter/renovate-config': ^1.4.3
