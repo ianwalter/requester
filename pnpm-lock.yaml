@@ -4,7 +4,7 @@ dependencies:
   '@ianwalter/print': 8.1.0
 devDependencies:
   '@changesets/cli': 2.14.0
-  '@ianwalter/bff': 9.13.0
+  '@ianwalter/bff': 10.0.4
   '@ianwalter/eslint-config': 6.2.0
   '@ianwalter/nrg': 0.18.1
   '@ianwalter/renovate-config': 1.4.3
@@ -390,41 +390,10 @@ packages:
     dev: true
     resolution:
       integrity: sha512-MO0UPi6uMT96VckR5s65cpnvQRGMT/52qOGest4Ot0ry+In2H2+ox2RQRiNWK8lSPHUf5n327qRlLrsbz1GllQ==
-  /@generates/cli/0.0.9:
-    dependencies:
-      '@generates/logger': 0.0.9
-      '@generates/merger': 0.1.2
-      '@ianwalter/dot': 1.0.5
-      camelcase: 6.0.0
-      common-tags: 1.8.0
-      decamelize: 4.0.0
-      getopts: 2.2.5
-      read-pkg-up: 7.0.1
-    dev: true
-    resolution:
-      integrity: sha512-xZdBwf/mD2azGsJfxIRN0Ln3cPx9AzTxgPK40mLhdedeMEduVXR9hvL/fnRCzj+Lk7ZhvB3wETWcoACjvsQugw==
   /@generates/dotter/2.0.0:
     dev: true
     resolution:
       integrity: sha512-QI5gmvS1ZOeZ8msYdctT7VARrHWGGG3PuFYGVqhzkeBkalnaqCAtqOxaGFiEab5f7VzEOZt6d41pmM3fbQmaIQ==
-  /@generates/logger/0.0.9:
-    dependencies:
-      '@generates/cli': 0.0.9
-      '@generates/merger': 0.1.2
-      '@ianwalter/chromafi': 1.0.1
-      '@ianwalter/clone': 6.0.1
-      '@ianwalter/cloneable': 2.0.0
-      '@ianwalter/dot': 1.0.5
-      chalk: 4.1.0
-      has-ansi: 4.0.0
-      has-emoji: 1.1.0
-      marked: 1.1.1
-      marked-terminal: 4.1.0_marked@1.1.1
-      strip-ansi: 6.0.0
-    dev: true
-    hasBin: true
-    resolution:
-      integrity: sha512-SzWqUUO2ugHSVFW0UoH1dovSCIsP8BHNx1iRqQ/ZnsUDh1t0logrVH9nqWFpR10ey629uIDPq0Ut/43G3P8tZQ==
   /@generates/logger/0.1.0:
     dependencies:
       '@generates/cli': 0.0.10
@@ -443,26 +412,17 @@ packages:
     hasBin: true
     resolution:
       integrity: sha512-ltA/KJgMRt5qf7gBT+Z8V0Dzuc83mdyQJwjhn3eWxeG6SMNF8Fqrx8yzvQ13AmHWy7wF7/m7CLz8oNsND/M8Mw==
-  /@generates/merger/0.1.1:
-    dev: true
-    resolution:
-      integrity: sha512-jlO57SAsyw3sI7fpgHLzx7CdpklW4hciHoILR0lylj0WlMBD1PpRfULeqfiWjUV5NxGuhrxQqZ4vrPteKEZKNg==
-  /@generates/merger/0.1.2:
-    dev: true
-    resolution:
-      integrity: sha512-t1Mi5mtIwCbcKxqZ5v+7Ds570gwTfo5vAXr0Q3naaMxfnCc6CychGHh/GyF6nK3qYIxh9BJhThVTiCfN+ukMuQ==
   /@generates/merger/0.1.3:
     dev: true
     resolution:
       integrity: sha512-x4KKHexiP4hIfoGZumc3RSac1t9d/aGErxbG9NASHcx59mljW2uyKDt4qP3igi9hszIHV5mjb4TbAYUNFoWg3w==
-  /@ianwalter/bff/9.13.0:
+  /@ianwalter/bff/10.0.4:
     dependencies:
-      '@generates/logger': 0.0.9
-      '@generates/merger': 0.1.1
+      '@generates/logger': 0.1.0
+      '@generates/merger': 0.1.3
       '@ianwalter/cli': 4.1.0
       '@ianwalter/clone': 6.0.1
       '@ianwalter/cloneable': 2.0.0
-      '@ianwalter/dist': 6.0.0
       '@ianwalter/sleep': 0.0.1
       '@ianwalter/subpub': 3.0.0
       '@ianwalter/timer': 2.0.2
@@ -472,16 +432,15 @@ packages:
       common-tags: 1.8.0
       esm-to-cjs: 1.2.0
       expect: 26.6.2
+      glob: 7.1.6
       jest-snapshot: 26.6.2
       junit-report-builder: 2.1.0
       p-series: 2.1.0
-      require-from-string: 2.0.2
-      tiny-glob: 0.2.8
-      workerpool: 6.0.3
+      workerpool: 6.0.4
     dev: true
     hasBin: true
     resolution:
-      integrity: sha512-wG2aj8Rl11/5pjjA3RE/LC0goERVmA8mrKUrxk0iCWbkhe/cKfmsY2lOFZQziNQ3IWdURZJdd/Eomq2ntyYHlQ==
+      integrity: sha512-qkO1/nGSBXE3S4DxMz4zzv86PPQh+nyGGDgSIT16s8xMEexCuz6gc/wEzh+DBJNV0Of8NwP5lW/7SuDOqw0mBw==
   /@ianwalter/chromafi/1.0.1:
     dependencies:
       ansi-mark: 1.0.4
@@ -2980,7 +2939,7 @@ packages:
     resolution:
       integrity: sha1-FQStJSMVjKpA20onh8sBQRmU6k8=
   /fsevents/2.1.3:
-    deprecated: Please update to v 2.2.x
+    deprecated: '"Please update to latest v2.3 or v2.2"'
     dev: true
     engines:
       node: ^8.16.0 || ^10.6.0 || >=11.0.0
@@ -3115,10 +3074,6 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-BWICuzzDvDoH54NHKCseDanAhE3CeDorgDL5MT6LMXXj2WCnd9UC2szdk4AWLfjdgNBCXLUanXYcpBBKOSWGwg==
-  /globalyzer/0.1.0:
-    dev: true
-    resolution:
-      integrity: sha512-40oNTM9UfG6aBmuKxk/giHn5nQ8RVz/SS4Ir6zgzOv9/qC3kKZ9v4etGTcJbEl/NyVQH7FGU7d+X1egr57Md2Q==
   /globby/11.0.1:
     dependencies:
       array-union: 2.1.0
@@ -3132,10 +3087,6 @@ packages:
       node: '>=10'
     resolution:
       integrity: sha512-iH9RmgwCmUJHi2z5o2l3eTtGBtXek1OYlHrbcxOYugyHLmAsZrPj43OtHThd62Buh/Vv6VyCBD2bdyWcGNQqoQ==
-  /globrex/0.1.2:
-    dev: true
-    resolution:
-      integrity: sha512-uHJgbwAMwNFf5mLst7IWLNg14x1CkeqglJb/K3doi4dw6q2IvAAmM/Y81kevy83wP+Sst+nutFTYOGg3d1lsxg==
   /graceful-fs/4.2.4:
     dev: true
     resolution:
@@ -6465,13 +6416,6 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-Cc+OraorugtXNfs50hU9KS369rFXCfgGLpfCfvlc+Ud5u6VWmUQsOAa9HbTvheQdYnrdJqqv1e5oIqXppMYnSw==
-  /tiny-glob/0.2.8:
-    dependencies:
-      globalyzer: 0.1.0
-      globrex: 0.1.2
-    dev: true
-    resolution:
-      integrity: sha512-vkQP7qOslq63XRX9kMswlby99kyO5OvKptw7AMwBVMjXEI7Tb61eoI5DydyEMOseyGS5anDN1VPoVxEvH01q8w==
   /tmp/0.0.33:
     dependencies:
       os-tmpdir: 1.0.2
@@ -6826,10 +6770,10 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha512-Hz/mrNwitNRh/HUAtM/VT/5VH+ygD6DV7mYKZAtHOrbs8U7lvPS6xf7EJKMF0uW1KJCl0H701g3ZGus+muE5vQ==
-  /workerpool/6.0.3:
+  /workerpool/6.0.4:
     dev: true
     resolution:
-      integrity: sha512-meU8ZzO+ipcx/njxtKUcbu2K95085q5WYDo8fR6PMW3hCY4driteIsNsEowYV7dzOtvq0HotUKsReJkK8gKXgg==
+      integrity: sha512-sAc9w9oAJQ2680gDArGinjw0Ygj2K3KF1ZCRfslBKUCzc9Gycwlj9ZIAbizPRBftcXxhXgoGMVPxJE0VMNnWbw==
   /wrap-ansi/6.2.0:
     dependencies:
       ansi-styles: 4.2.1
@@ -6912,7 +6856,7 @@ packages:
       integrity: sha1-KOwXzwl0PtyrBW3dixsGJizHPDA=
 specifiers:
   '@changesets/cli': ^2.14.0
-  '@ianwalter/bff': ^9.13.0
+  '@ianwalter/bff': ^10.0.4
   '@ianwalter/clone': ^6.0.1
   '@ianwalter/eslint-config': ^6.2.0
   '@ianwalter/merge': ^9.0.1
