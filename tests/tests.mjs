@@ -1,53 +1,55 @@
-const querystring = require('querystring')
-const { test } = require('@ianwalter/bff')
-const { createApp } = require('@ianwalter/nrg')
-const { requester, Requester } = require('..')
+import querystring from 'querystring'
+import { test } from '@ianwalter/bff'
+import nrg from '@ianwalter/nrg'
+import rqr from '../index.js'
 
-test('GET request for empty response', async ({ expect }) => {
-  const app = createApp({ log: false })
+const { requester, Requester } = rqr
+
+test('GET request for empty response', async t => {
+  const app = nrg.createApp({ log: false })
   app.use(ctx => (ctx.status = 204))
   const server = await app.serve()
   try {
     const response = await requester.get(server.url)
-    expect(response.ok).toBe(true)
-    expect(response.statusCode).toBe(204)
-    expect(response.body).toBe(undefined)
+    t.expect(response.ok).toBe(true)
+    t.expect(response.statusCode).toBe(204)
+    t.expect(response.body).toBe(undefined)
   } finally {
     await server.close()
   }
 })
 
-test('GET request for text', async ({ expect }) => {
-  const app = createApp({ log: false })
+test('GET request for text', async t => {
+  const app = nrg.createApp({ log: false })
   app.use(ctx => (ctx.body = 'test'))
   const server = await app.serve()
   try {
     const response = await requester.get(server.url)
-    expect(response.ok).toBe(true)
-    expect(response.statusCode).toBe(200)
-    expect(response.body).toBe('test')
+    t.expect(response.ok).toBe(true)
+    t.expect(response.statusCode).toBe(200)
+    t.expect(response.body).toBe('test')
   } finally {
     await server.close()
   }
 })
 
-test('GET request for JSON', async ({ expect }) => {
-  const app = createApp({ log: false })
+test('GET request for JSON', async t => {
+  const app = nrg.createApp({ log: false })
   const body = { message: 'test' }
   app.use(ctx => (ctx.body = body))
   const server = await app.serve()
   try {
     const response = await requester.get(server.url)
-    expect(response.ok).toBe(true)
-    expect(response.statusCode).toBe(200)
-    expect(response.body).toEqual(body)
+    t.expect(response.ok).toBe(true)
+    t.expect(response.statusCode).toBe(200)
+    t.expect(response.body).toEqual(body)
   } finally {
     await server.close()
   }
 })
 
-test('POST request with JSON', async ({ expect }) => {
-  const app = createApp({ log: false })
+test('POST request with JSON', async t => {
+  const app = nrg.createApp({ log: false })
   const body = { chef: 'Sanchez', born: new Date() }
   app.use(ctx => {
     ctx.status = ctx.request.body.chef === body.chef ? 201 : 400
@@ -56,17 +58,17 @@ test('POST request with JSON', async ({ expect }) => {
   const server = await app.serve()
   try {
     const response = await requester.post(server.url, { body })
-    expect(response.ok).toBe(true)
-    expect(response.statusCode).toBe(201)
-    expect(response.body).toEqual({ ...body, born: body.born.toISOString() })
+    t.expect(response.ok).toBe(true)
+    t.expect(response.statusCode).toBe(201)
+    t.expect(response.body).toEqual({ ...body, born: body.born.toISOString() })
   } finally {
     await server.close()
   }
 })
 
-test('POST request for form data', async ({ expect }) => {
+test('POST request for form data', async t => {
   const body = { artist: 'Peter Bjorn and John', song: 'Music' }
-  const app = createApp({ log: false })
+  const app = nrg.createApp({ log: false })
   app.use(ctx => {
     ctx.set('content-type', 'application/x-www-form-urlencoded')
     ctx.body = querystring.stringify(body)
@@ -74,31 +76,31 @@ test('POST request for form data', async ({ expect }) => {
   const server = await app.serve()
   try {
     const response = await requester.post(server.url)
-    expect(response.ok).toBe(true)
-    expect(response.statusCode).toBe(200)
-    expect(response.body).toEqual(body)
+    t.expect(response.ok).toBe(true)
+    t.expect(response.statusCode).toBe(200)
+    t.expect(response.body).toEqual(body)
   } finally {
     await server.close()
   }
 })
 
-test('Unauthorized GET request', async ({ expect }) => {
-  const app = createApp({ log: false })
+test('Unauthorized GET request', async t => {
+  const app = nrg.createApp({ log: false })
   app.use(ctx => (ctx.status = 401))
   const server = await app.serve()
   try {
     await requester.get(server.url)
   } catch (err) {
-    expect(err.response.ok).toBe(false)
-    expect(err.response.statusCode).toBe(401)
-    expect(err.response.body).toBe('Unauthorized')
+    t.expect(err.response.ok).toBe(false)
+    t.expect(err.response.statusCode).toBe(401)
+    t.expect(err.response.body).toBe('Unauthorized')
   } finally {
     await server.close()
   }
 })
 
-test('Bad Request with shouldThrow = false', async ({ expect }) => {
-  const app = createApp({ log: false })
+test('Bad Request with shouldThrow = false', async t => {
+  const app = nrg.createApp({ log: false })
   const requester = new Requester({ shouldThrow: false })
   const body = { message: 'Ungodly gorgeous, buried in a chorus' }
   app.use(ctx => {
@@ -108,27 +110,48 @@ test('Bad Request with shouldThrow = false', async ({ expect }) => {
   const server = await app.serve()
   try {
     const response = await requester.get(server.url)
-    expect(response.ok).toBe(false)
-    expect(response.statusCode).toBe(400)
-    expect(response.body).toEqual(body)
+    t.expect(response.ok).toBe(false)
+    t.expect(response.statusCode).toBe(400)
+    t.expect(response.body).toEqual(body)
   } finally {
     await server.close()
   }
 })
 
-test('HTTPS request', async ({ expect }) => {
+test('HTTPS request', async t => {
   const requestbin = 'https://en5femwzf9sry.x.pipedream.net'
   const body = { success: true }
   let response = await requester.get(requestbin)
-  expect(response.statusCode).toBe(200)
-  expect(response.body).toEqual(body)
+  t.expect(response.statusCode).toBe(200)
+  t.expect(response.body).toEqual(body)
   response = await requester.post(requestbin, { body })
-  expect(response.statusCode).toBe(200)
-  expect(response.body).toEqual(body)
+  t.expect(response.statusCode).toBe(200)
+  t.expect(response.body).toEqual(body)
+})
+
+test('Redirect', async t => {
+  const app = nrg.createApp({ log: false })
+
+  app.get('/', ctx => {
+    ctx.set('location', server.url + '/a')
+    ctx.status = 301
+  })
+
+  app.get('/a', ctx => (ctx.body = 'Success!'))
+
+  const server = await app.serve()
+
+  try {
+    const response = await requester.get(server.url)
+    t.expect(response.statusCode).toBe(200)
+    t.expect(response.body).toBe('Success!')
+  } finally {
+    await server.close()
+  }
 })
 
 test('Get request options from response', async t => {
-  const app = createApp({ log: false })
+  const app = nrg.createApp({ log: false })
   app.use(ctx => (ctx.status = 204))
   const server = await app.serve()
   const headers = { 'x-test': 123 }

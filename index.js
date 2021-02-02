@@ -3,9 +3,9 @@ const https = require('https')
 const { URL } = require('url')
 const zlib = require('zlib')
 const querystring = require('querystring')
-const { createPrint } = require('@ianwalter/print')
+const { createLogger } = require('@generates/logger')
 const { version } = require('./package.json')
-const merge = require('@ianwalter/merge')
+const { merge } = require('@generates/merger')
 
 const methods = [
   'get',
@@ -23,7 +23,7 @@ const defaults = {
   headers,
   timeout: 60000
 }
-const print = createPrint({ level: 'info', namespace: 'requester' })
+const logger = createLogger({ level: 'info', namespace: 'requester' })
 
 class HttpError extends Error {
   constructor (response) {
@@ -51,7 +51,7 @@ class Requester {
     // If a body object or array was passed, automatically stringify it and add
     // a JSON Content-Type header.
     if (options.body && typeof options.body === 'object') {
-      print.debug('Request body is JSON', { body: options.body })
+      logger.debug('Request body is JSON', { body: options.body })
       options.headers['content-type'] = 'application/json'
       options.body = JSON.stringify(options.body)
       options.headers['content-length'] = `${Buffer.byteLength(options.body)}`
@@ -68,13 +68,13 @@ class Requester {
       const encoding = response.headers && response.headers['content-encoding']
       if (encoding) {
         if (encoding === 'gzip') {
-          print.debug('Response body is encoded using gzip')
+          logger.debug('Response body is encoded using gzip')
           response.body = zlib.gunzipSync(response.body)
         } else if (encoding === 'br') {
-          print.debug('Response body is encoded using brotli')
+          logger.debug('Response body is encoded using brotli')
           response.body = zlib.brotliDecompressSync(response.body)
         } else if (encoding === 'deflate') {
-          print.debug('Response body is encoded using deflate')
+          logger.debug('Response body is encoded using deflate')
           response.body = zlib.deflateSync(response.body)
         }
       }
@@ -97,11 +97,11 @@ class Requester {
       // Automatically parse the response body as JSON if the Content-Type
       // header is application/json.
       if (isJson) {
-        print.debug('Response body is JSON')
+        logger.debug('Response body is JSON')
         try {
           response.body = JSON.parse(response.body)
         } catch (err) {
-          print.error(err)
+          logger.error(err)
         }
       } else if (isUrlEncoded) {
         response.body = querystring.parse(response.body)
@@ -114,13 +114,11 @@ class Requester {
     options = merge({ body }, this.options, options)
 
     // If a base URL has been configured, use it to build the complete URL.
-    if (options.baseUrl) {
-      url = new URL(url, options.baseUrl).toString()
-    }
+    if (options.baseUrl) url = new URL(url, options.baseUrl).toString()
 
     // Automatically add request headers based on the request body.
     this.shapeRequest(options)
-    print.debug('Request', { url, options })
+    logger.debug('Request', { url, options })
 
     return new Promise((resolve, reject) => {
       // Create the request.
@@ -137,13 +135,18 @@ class Requester {
         const bodyChunks = []
 
         const { statusCode, statusText, headers } = response
-        print.debug('Response', { statusCode, statusText, headers })
+        logger.debug('Response', { statusCode, statusText, headers })
+
+        if ([301, 302, 307, 308].includes(response.statusCode)) {
+          const { location } = response.headers
+          return resolve(this.request(location, { body, ...options }))
+        }
 
         // Listen to the data event to receive the response body as one or more
         // buffers and collect them into the bodyChunks array.
         response.on('data', data => {
           if (this.options.logLevel === 'debug') {
-            print.debug('Response data event', data.toString())
+            logger.debug('Response data event', data.toString())
           }
           bodyChunks.push(data)
         })
@@ -151,13 +154,11 @@ class Requester {
         // When the response is complete, resolve the returned Promise with the
         // response.
         response.on('end', () => {
-          print.debug('Response end event')
+          logger.debug('Response end event')
 
           // Set the response body to a single Buffer by concatenating the
           // chunks in the bodyChunks array.
-          if (bodyChunks.length) {
-            response.body = Buffer.concat(bodyChunks)
-          }
+          if (bodyChunks.length) response.body = Buffer.concat(bodyChunks)
 
           // Shape the response based on the received response headers.
           this.shapeResponse(response)
@@ -175,14 +176,12 @@ class Requester {
       })
 
       request.once('timeout', () => {
-        print.debug('Request timeout event')
+        logger.debug('Request timeout event')
         request.abort()
       })
 
       // If a request body was passed, write it to the request stream.
-      if (options.body) {
-        request.write(options.body)
-      }
+      if (options.body) request.write(options.body)
 
       // Execute the request by ending the stream.
       request.end()
