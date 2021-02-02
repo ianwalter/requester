@@ -1,5 +1,11 @@
 # @ianwalter/requester
 
+## 2.5.0
+
+### Minor Changes
+
+- dc15cc5: Automatically following redirects
+
 ## 2.4.3
 
 ### Patch Changes
